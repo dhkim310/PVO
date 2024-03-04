@@ -1,0 +1,130 @@
+.left_window{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 70px;
+    height: 100%;
+    background-color: #ffffff;
+    border-right: 1px solid #dedede;
+    border-radius: 17px;
+}
+
+/*
+.left_window .top_menu {
+    background-color: #ffffff;
+
+     width: 310px;
+    height: 70px;
+    padding: 25px 0px 0px 30px;
+
+    text-align: left;
+
+    font-size: 20px;
+    color: #000000;
+}
+*/
+
+/*
+.left_window .make{
+    background-color: #ffffff;
+    height: 40px;
+}
+*/
+
+/* 새 회의록 만들기 */
+/*
+.left_window .make .make_btn{
+    width: 230px;
+    height: 30px;
+
+    font-size: 13px;
+    color: #000000;
+    font-family: "굴림";
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+
+    margin-left: 30px;
+    margin-top: 5px;
+}
+*/
+
+.left_window .left_menu{
+    background-color: #ffffff;
+}
+/* 왼쪽 메뉴 */
+/*
+.left_window .left_menu .memu_sub{
+    font-size: 14px;
+    color: #000000;
+    font-family: "굴림";  'Gothic A1', sans-serif;
+
+    margin-top: 8px;
+    margin-left: 30px;
+}
+*/
+
+/* 왼쪽 메뉴 빈공간 */
+.left_window .left_menu .memu_sub_empty{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+
+/* 메뉴상위 */
+
+.left_window .left_menu .memu_sub_empty{
+    display:block;
+    font-size: 14px;
+    color: #000000;
+    font-family: "굴림";/*'Gothic A1', sans-serif;*/
+
+    margin-top: 80px;
+    margin-left: 16px;
+
+    width: 40px;
+}
+
+
+/* 회의록들 */
+.left_window .left_menu .memu_sub_folder{
+    display:block;
+    font-size: 14px;
+    color: #000000;
+
+    margin-top: 10px;
+    margin-left: 16px;
+
+    width: 40px;
+    /*background-color: #6b60f0;*/
+}
+
+/* 회의록들 / 이미지 */
+/*
+.left_window .left_menu .memu_sub_folder .memu_sub_img{
+    background-color: #d9b230;
+    width: 20px;
+}
+*/
+
+/* 회의록들 / 이미지 */
+.left_window .left_menu .memu_sub_folder img{
+    width: 35px;
+    height: 35px;
+    /*
+    vertical-align: top;
+    */
+}
+
+.left_window .left_menu .memu_sub_folder .memu_sub_txt{
+    margin-top: 0px;
+    margin-left: 0px;
+
+    text-align: center;
+    font-size: 9px;
+    color: #000000;
+    font-family: "굴림";
+}
+
+
+
+
