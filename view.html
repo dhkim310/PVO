@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회의록</title>
+
+    <!-- -----(스크롤바 너비,높이,색깔 바꾸기) ------- -->
+    <style type="text/css">
+        /* Webkit (Chrome, Edge, Opera, Safari) */
+        ::-webkit-scrollbar        { width: 2px; height: 1px; }
+        ::-webkit-scrollbar-track  { background-color: #aaa;  }
+        ::-webkit-scrollbar-thumb  { background-color: #6682f8;  }
+        /* Firefox only */
+        * {
+            scrollbar-color: #aaa;
+            scrollbar-width: thin;
+        }
+    </style>
+    <!-- -----(스크롤바 너비,높이,색깔 바꾸기) ------- -->
+
+    <link href="css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
+    <link href="css/main.css" rel="stylesheet" id="main-css">
+    <link href="css/left_window.css" rel="stylesheet" id="main-css">
+    <link href="css/chat_window.css" rel="stylesheet" id="main-css">
+    <link href="css/file_window.css" rel="stylesheet" id="main-css">
+    <link href="css/list_window.css" rel="stylesheet" id="main-css">
+    <link href="css/list_window_block.css" rel="stylesheet" id="main-css">
+    <link href="css/popup.css" rel="stylesheet" id="main-css">
+<!--<link rel="shortcut icon" href="">-->
+<!--<link rel="shortcut icon" href="#"/>-->
+<!--<link rel="icon" href="data:;base64, iVBORw0KGgo=">-->
+<!--<link rel="shortcut icon" href="data:image/x-icon:," type="image/x-icon">-->
+
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+
+    <script src="js/left.js" type="text/javascript"></script>
+
+    <script src="js/view.js" type="text/javascript"></script>
+    <script src="js/view_ajax.js" type="text/javascript"></script>
+
+    <script src="js/wavesurfer.js"></script>                                        <!-- <script src="https://unpkg.com/wavesurfer.js"></script> -->
+    <script src="js/wavesurfer.markers.js"></script>                                <!-- <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.markers.js"></script> --> <!-- (참고: https://wavesurfer-js.org/plugins/markers.html) -->
+
+    <script>
+        /*
+        $(function(){
+            circle_graph(80);       //메뉴하단 그래프 실행
+        });
+        */
+
+        wave_file_name = "wav/test_sample.wav";         //오디오파일명
+
+        setTimeout(function (){ return get_meeting_data("A123456", "json/view_data.html?workid=A123456",""); }, 100);                    //회의록
+        //setTimeout(function (){ return get_meeting_memo_data("A123456", "json/view_memo_data.html?workid=workid"); }, 100);           //메모
+        //setTimeout(function (){ return get_meeting_bookmark_data("A123456", "json/view_bookmark_data.html?workid=workid"); }, 100);   //북마크
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="left_window">
+        <div class="left_menu">
+            <div class="memu_sub_empty"></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">홈</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">녹음</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">업로드</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">목록</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">즐겨찾기</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">휴지통</div></div>
+        </div>
+    </div>
+
+
+    <div class="contents">
+        <!-- (채팅화면) -->
+        <div class="chat_window">
+            <div class="top_menu">
+                <div class="subject">
+                    <div class="title">이보워 님 셋톱박스 설치 문의</div>
+                    <div class="search"><input id="search" placeholder="검색문구 입력"></div>
+                    <div class="icon"><img class="icon1" src="img/chat/1.png"><img class="icon1" src="img/chat/2.png"><img class="icon1" src="img/chat/3.png"></div>
+                </div>
+                <div class="ymdhis">녹음일자 2024년 1월 31일(수) 오후 2시 11분 8초</div>
+                <div class="bottom">
+                    <div class="view_mode_test1" onclick="ViewMode_Chart_Record()">쓰기</div>
+                    <div class="view_mode_test2" onclick="ViewMode_Chart_View()">보기</div>
+                    <div class="view_mode" id="ViewMode" onclick="onChangeViewMode()">메신저 형태로 보기</div>
+                    <div class="option"><a href="#" onclick="view_voice_memo();return false;">음성+메모</a>,<a href="#" onclick="view_voice();return false;">음성</a>,<a href="#" onclick="view_memo();return false;">메모</a></div>
+                </div>
+            </div>
+            <div class="middle_content">
+                <ul class="messages" id="messages">
+                    <!--
+                    <li class="message left appeared">
+                        <div class="profile">
+                            <div class="work_id"></div>
+                            <div class="avatar"></div>
+                            <div class="name">관리자</div>
+                            <div class="st_time">00:05</div>
+                            <div class="ed_time">00:09</div>
+                            <div class="memo_yn">메모</div>
+                            <div class="data"><input type="text" id="index" width="5px" value="0"><input type="text" id="start_time" value="5"><input type="text" id="end_time" value="9"><input type="text" id="work_id" width="5px" value="A123456"></div>
+                            <div class="message_menu"><input type="image" class="message_menu_img" id="id_message_menu_img_0" src="img/chat/3.png" onclick="Memu_pop(&quot;A123456&quot;,0,5,9)" style="display: none;"></div>
+                        </div>
+                        <div class="text_wrapper" onmouseover="menu_mouse_over(0)" onmouseout="menu_mouse_out(0)">
+                            <div class="text" id="0" onclick="WavPlay_range(5,9)">반갑습니다. 스카이라이프 전혜원입니다</div>
+                        </div>
+                    </li>
+                    -->
+                </ul>
+                <div class="sub_content">
+                    <div class="sub_frame">
+                        <div class="menu">
+                            <div class="memo" onclick="show_memo()">메모</div>
+                            <div class="bookmark">북마크</div>
+                            <div class="ai">AI</div>
+                            <div class="tts">TTS</div>
+                            <div class="rec_list">녹취록탐색</div>
+                        </div>
+                        <div class="sub_frame_content">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+                        </div>
+                    </div>
+                    <div class="sub_frame">bb</div>
+<!--                    <div class="memo_title">메모</div>-->
+                    <!-- <div class="memo_icon"><img class="icon1" src="img/chat/4.png"> 여기를 눌러 메모 작성하기</div> -->
+<!--                    <div class="memo_list">-->
+                        <!--
+                        <div class="memo_wrapper">
+                            <div class="memo_second">00:25</div>
+                            <div class="memo_content">메모입니다.</div>
+                        </div>
+
+                        <div class="memo_wrapper">
+                            <div class="memo_second">00:25</div>
+                            <div class="memo_content">메모입니다.</div>
+                        </div>
+                        -->
+                </div>
+            </div>
+            <div class="bottom_wrapper">
+                <div id="waveform"></div>
+                <div id="waveform_btn">
+                    <div id="start_sec">00:00</div>
+                    <div id="speed" onclick="change_audioRate()">1x</div>
+                    <div id="prev"><img src="img/chat/prev.png" width="56px" onclick="WavBackward()"></div>
+                    <div id="play"><img src="img/chat/play.png" width="43px" id="id_btn_play" onclick="WavPlayPause()"></div>
+                    <div id="next"><img src="img/chat/next.png" width="56px" onclick="WavForward()"></div>
+                    <div id="bookmark"><img src="img/chat/bookmark.png" width="56px" onclick="add_bookmark()"></div>
+                    <div id="end_sec">03:46</div>
+                </div>
+            </div>
+        </div>
+        <!-- (채팅화면) -->
+</div>
+
+<div class="record_btn_template">
+    <div id="record_btn">
+        <div id="bt_mic1_image"><img src="img/chat/icon_mic.png"></div>
+        <div id="bt_mic1_vol">
+            <input type="range" min="1" max="100" value="50" class="slider" id="volume1">
+        </div>
+        <div id="bt_mic2_image"><img src="img/chat/icon_mic.png"></div>
+        <div id="bt_mic2_vol">
+            <input type="range" min="1" max="100" value="50" class="slider" id="volume2">
+        </div>
+        <div id="bt_speak_image"><img src="img/chat/speaker.png"></div>
+        <div id="bt_speak_vol">
+            <input type="range" min="1" max="100" value="50" class="slider" id="speaker">
+        </div>
+        <div id="bt_option_name">
+            <div id="sd_name">화자 분리</div>
+            <div id="nr_name">잡음 제거</div>
+        </div>
+        <div id="bt_option">
+            <div id="sd_btn">
+                <input type="checkbox" id="checkbox1" checked>
+                <label for="checkbox1"><span></span></label>
+            </div>
+            <div id="nr_btn">
+                <input type="checkbox" id="checkbox2">
+                <label for="checkbox2"><span></span></label>
+            </div>
+        </div>
+        <div id="bt_mic"><img src="img/chat/record_mic.png"  id="bt_mic_img" onclick="onRecord()"></div>
+        <div id="bt_stop"><img src="img/chat/record_stop.png" id="bt_stop_img" onclick="onRecordStop()"></div>
+    </div>
+</div>
+
+
+<div class="memo_template">
+    <div class="all_memo">
+        <textarea class="all_memo_tarea"></textarea>
+    </div>
+    <div class="time_memo">
+    </div>
+</div>
+
+
+<div class="waveform_btn_template">
+    <div id="waveform_btn">
+        <div id="start_sec">00:00</div>
+        <div id="speed" onclick="change_audioRate()">1x</div>
+        <div id="prev"><img src="img/chat/prev.png" width="56px" onclick="WavBackward()"></div>
+        <div id="play"><img src="img/chat/play.png" width="43px" id="id_btn_play" onclick="WavPlayPause()"></div>
+        <div id="next"><img src="img/chat/next.png" width="56px" onclick="WavForward()"></div>
+        <div id="bookmark"><img src="img/chat/bookmark.png" width="56px" onclick="add_bookmark()"></div>
+        <div id="end_sec">03:46</div>
+    </div>
+</div>
+
+<!-- 메세지 형식(위의 messages에 들어감) -->
+<div class="message_template">
+    <li class="message">
+        <div class="profile">
+            <div class="work_id"></div>
+            <!--<div class="avatar"></div>-->
+            <div class="name"></div>
+            <div class="st_time"></div>
+            <div class="ed_time"></div>
+            <div class="memo_yn"></div>
+            <div class="bookmark_yn"></div>
+            <div class="data"></div>
+            <div class="message_menu"></div>
+        </div>
+        <div class="text_wrapper">
+            <div class="text"></div>
+        </div>
+    </li>
+</div>
+</body>
+
+
+</html>
