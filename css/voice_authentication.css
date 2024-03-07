@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+}
+
+.whole {
+    width: 100%;
+    height: 1080px;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.whole .authentication_window {
+    width: 1000px;
+    height: 800px;
+    background: rgba(255, 255, 255, 1);
+    padding: 25px 23px;
+    margin: auto;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* 회사 로고 */
+.pv_logo {
+    width: 240px;
+    height: 98px;
+    background: url("../img/PV_Logo.png") no-repeat center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 404px;
+    overflow: hidden;
+}
+
+.whole .authentication_window .authentication {
+    width: 800px;
+    height: 500px;
+    background: rgba(249, 249, 249, 1);
+    opacity: 1;
+    position: absolute;
+    top: 148px;
+    left: 105px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.whole .authentication_window .authentication .guide_text_1 {
+    width: 773px;
+    color: rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    font-size: 24px;
+    opacity: 1;
+    text-align: center;
+}
+
+.whole .authentication_window .authentication .guide_text_2 {
+    width: 773px;
+    color: rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    font-size: 64px;
+    opacity: 1;
+    text-align: center;
+}
+
+/* 프로그래스 바 */
+.whole .authentication_window .authentication .progress_bar {
+    width: 700px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    position: absolute;
+    top: 420px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
