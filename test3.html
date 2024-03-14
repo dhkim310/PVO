@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Style Checkbox</title>
+    <style>
+        /* 버튼 스타일 초기 설정 */
+        .button-checkbox {
+            background-color: #f0f0f0; /* 기본 배경색 */
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px; /* 버튼 모서리 둥글게 */
+        }
+
+        /* 체크됐을 때의 배경색 변경 */
+        .checked {
+            background-color: #4CAF50; /* 체크됐을 때의 배경색 */
+        }
+    </style>
+</head>
+<body>
+
+<button id="myButton" class="button-checkbox"><img src="img/chat/footsteps.png" width="15px"> 텍스트 따라가기</button>
+
+<script>
+    // 버튼 클릭 이벤트
+    document.getElementById("myButton").onclick = function() {
+        var button = document.getElementById("myButton");
+        button.classList.toggle("checked"); // 'checked' 클래스 토글
+    }
+</script>
+
+</body>
+</html>

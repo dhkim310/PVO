@@ -1,0 +1,163 @@
+.message_template {
+    display: none;
+}
+
+waveform_btn_template{
+    display: none;
+}
+
+
+record_btn_template{
+    display: none;
+}
+
+
+
+.chat_window {
+    position: absolute;
+    width: calc(100% - 70px);  /*좌우최소여백*/
+    left: 70px;
+
+    max-width: 100%; /*800px;*/
+    height: 100%;
+
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+
+/* <==========================================================================chat_window_top_menu.css" */
+
+
+/* ------<좌측 메세지창>------ */
+
+.chat_window .middle_content{
+/*    border-top: 1px solid #e2e2e2;*/
+}
+
+/* <==========================================================================chat_window_middle_content_messages.css */
+
+/* ------</좌측 메세지창>------ */
+
+
+/* ------<우측 서브메뉴>------ */
+
+.chat_window .middle_content .sub_content {
+    /* (아래 sub_frame을 위,아래로 배치하며 높이변경시 동일한 사이즈로 변경됨) */
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    position: absolute;
+
+    left: calc(100% - 575px);
+
+    width: 570px;               /*    width: calc(100% - 70%);*/
+    height: calc(100% - 255px);
+}
+
+
+.chat_window .middle_content .sub_content .sub_frame{
+    /* (위의sub_content의 flex설정에 따른 설정값임)  */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /*---------------*/
+
+    margin-top: 10px;
+
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ffffff;
+
+    border-radius: 17px;
+
+    border:1px solid #cbcbcb;
+}
+
+/* <==========================================================================sub_content_sub_frame_menu.css */
+
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_memo{
+    display: inline-block;
+    width: 49%;
+    height: 100%; /*textarea를 100%채우려면..먼저 크기를 크게해야함 */
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_memo .all_memo_tarea{
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .memo_center_line{
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+
+    vertical-align: top;
+    background-color: #e5e5e5;
+}
+
+/* <==========================================================================sub_frame_content_time_memo.css */
+
+/* ------</우측 서브메뉴>------ */
+
+
+
+
+
+/*하단 그래프부터 각버튼들까지*/
+.chat_window .bottom_wrapper {
+    /*position: relative;*/
+/*    width: 100%;*/
+    width: calc(100% - 15px);
+
+    background-color: #ffffff;
+    padding: 0px 0px;
+    position: absolute;
+    bottom: 0;
+    height: 110px;
+
+    margin-left: 10px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+
+    border-radius: 25px;
+
+    border:1px solid #cbcbcb;
+}
+
+/* <==========================================================================bottom_wrapper_waveform.css */
+
+/* <==========================================================================bottom_wrapper_waveform_btn.css */
+
+/* <==========================================================================bottom_wrapper_record_btn.css */
+
+
+
+/* 쉐도우 효과*/
+.shadow{
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.52);
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+
+
+.text-red {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: red;
+}
+
+.text-normal {
+    color: #000000;
+    font-size: 14px;
+}
+

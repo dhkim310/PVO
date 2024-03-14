@@ -1,0 +1,140 @@
+
+/*--------------------------------------------<하단 플레이시 버튼>-------------------------------------------------------------*/
+/*하단 버튼들*/
+.chat_window .bottom_wrapper #waveform_btn{
+    width: calc(100% - 34px);
+    height: 44px;
+    background-color: #ffffff;
+    min-width: 500px;
+
+    margin-left: 18px;
+
+    padding-top: 1px;
+}
+
+/*스피커 영역*/
+.chat_window .bottom_wrapper #waveform_btn #bt_speak_image{
+    display: inline-block;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+/*스피커 이미지*/
+.chat_window .bottom_wrapper #waveform_btn #bt_speak_image img{
+    width: 24px;
+}
+
+/*스피커 슬라이더 영역*/
+.chat_window .bottom_wrapper #waveform_btn #bt_speak_vol{
+    display: inline-block;
+
+    padding-top: 0px;
+    padding-left: 10px;
+
+    width: 80px;
+}
+
+/*타임 스피트 영역*/
+.chat_window .bottom_wrapper #waveform_btn #bt_speed_image{
+    display: inline-block;
+    padding-left: 20px;
+}
+
+/*타임 스피트 이미지*/
+.chat_window .bottom_wrapper #waveform_btn #bt_speed_image img{
+    width: 24px;
+}
+
+/*타임 스피트 슬라이더 영역*/
+.chat_window .bottom_wrapper #waveform_btn #bt_speed_range{
+    display: inline-block;
+
+    padding-top: 0px;
+    padding-left: 10px;
+
+    width: 80px;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns{
+    display: inline-block;
+    position: absolute;
+
+    top: 55px;
+    left: calc(100% - 63%);
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns #bt_prev30{
+    display: inline-block;
+
+    width: 60px;
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns #bt_prev5{
+    display: inline-block;
+
+    width: 65px;
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns #bt_play{
+    display: inline-block;
+
+    width: 50px;
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns #bt_next5{
+    display: inline-block;
+
+    width: 60px;
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns #bt_next30{
+    display: inline-block;
+
+    width: 60px;
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #btns #bt_favorite{
+    display: inline-block;
+
+
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #bt_text_follow{
+    display: inline-block;
+    float: right;
+
+    margin-top: 10px;
+    margin-right: 10px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+
+    font-size: 13px;
+
+    border: 1px solid #000000;
+
+    border-top-right-radius: 12px 10px;                    /* x축 퍼센트 | y축 퍼센트 */
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+
+    cursor: pointer;
+}
+
+/* (텍스트 따라가기) 버튼 형태의 체크박스를 만들고, 체크되었을 때 버튼의 색상이 바뀜. 스타일 초기 설정 */
+.chat_window .bottom_wrapper #waveform_btn .button-check {
+    background-color: #f0f0f0; /* 기본 배경색 */
+}
+
+/* (텍스트 따라가기)체크됐을 때의 배경색 변경 */
+.chat_window .bottom_wrapper #waveform_btn .button-check.checked {
+    background-color: #4CAF50; /* 체크됐을 때의 배경색 */
+}
+

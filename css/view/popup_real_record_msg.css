@@ -1,0 +1,53 @@
+
+
+/*--------------------------------------------<실녹취 팝업>------------------------------------------------------*/
+.popup_real_record_msg{
+    position: absolute;
+    width: 450px;
+    height: 400px;
+
+    top: 25%;
+    bottom: 25%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    background: linear-gradient(-135deg, #ffffff, #e8e8e8);
+    box-shadow: 5px 5px 5px #595959;
+
+    z-index: 1;
+}
+
+.popup_real_record_msg .real_record_msg{
+    padding-top: 80px;
+
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup_real_record_msg  .btn{
+    margin-top: 150px;
+}
+
+.popup_real_record_msg  .btn .ok_btn{
+    display: inline-block;
+
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+
+    width: 210px;
+}
+
+.popup_real_record_msg  .btn .cancel_btn{
+    display: inline-block;
+
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+
+    width: 210px;
+}
+
+/*--------------------------------------------</실녹취 팝업>--------------------------------------------------*/

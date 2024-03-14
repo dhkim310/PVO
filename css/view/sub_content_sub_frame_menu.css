@@ -1,0 +1,61 @@
+
+
+
+.chat_window .middle_content .sub_content .sub_frame .menu{
+    display: block;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .menu .memo{
+    display: inline-block;
+
+    font-size: 14px;
+    color: #000000;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .menu .bookmark{
+    display: inline-block;
+
+    font-size: 14px;
+    color: #000000;
+
+    margin-left: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .menu .ai{
+    display: inline-block;
+
+    font-size: 14px;
+    color: #000000;
+
+    margin-left: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .menu .tts{
+    display: inline-block;
+
+    font-size: 14px;
+    color: #000000;
+
+    margin-left: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .menu .rec_list{
+    display: inline-block;
+
+    font-size: 14px;
+    color: #000000;
+
+    margin-left: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content{
+
+    flex: 1;
+    overflow: auto; // content에 스크롤 적용
+
+    background-color: bisque;
+    width: 100%;
+
+}
+
+

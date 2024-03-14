@@ -1,3 +1,14 @@
+
+
+/* ------------------------------------------------------------------------------------------------ */
+/*
+<div class="popup_menu">
+    <div class="popup_menu_list"><div class="popup_menu_icon"><img src="img/chat/12.png"></div><div class="popup_menu_name" onclick="Text_modify('+index+')">음성기록 편집</div></div>
+    <div class="popup_menu_list"><div class="popup_menu_icon"><img src="img/chat/12.png"></div><div class="popup_menu_name" onclick="Add_memo_form(,,,)">메모 추가</div></div>
+    <div class="popup_menu_list"><div class="popup_menu_icon"><img src="img/chat/12.png"></div><div class="popup_menu_name" onclick="Add_bookmark_form(,,,)">북마크 추가</div></div>
+</div>
+*/
+
 .popup_menu {
     position: absolute;
     width: 180px;
@@ -45,8 +56,21 @@
     width: 15px;
     height: 15px;
 }
+/* ------------------------------------------------------------------------------------------------ */
+
+
+
+
+
 
 /* ------------------------------------------------------------------------------------------------ */
+/*
+<div class="popup_memo">
+    <div class="cl_memo_area"><textarea class='cl_popup_memo_txt' id='cl_popup_memo_txt'></textarea></div>
+    <div class="cl_memo_button"><input type="button" value="저장"><input type="button" value="취소"></div>
+</div>
+
+*/
 
 .popup_memo{
     position: absolute;
@@ -97,16 +121,41 @@
 
     background-color: #ffffff;
 }
-/*
-<div class="popup_memo">
-    <div class="cl_memo_area"><textarea class='cl_popup_memo_txt' id='cl_popup_memo_txt'></textarea></div>
-    <div class="cl_memo_button"><input type="button" value="저장"><input type="button" value="취소"></div>
-</div>
+/* ------------------------------------------------------------------------------------------------ */
 
-*/
+
+
+
+
 
 
 /* ------------------------------------------------------------------------------------------------ */
+/*
+<div class="popup_profile">
+    <div class="popup_profile_list">
+        <div class="title">
+            <div id="title_text">참석자 변경</div>
+            <div id="close">x</div>
+        </div>
+        <div class="profile">
+            <div id="profile_pic"><img src=img/chat/icon2.svg></div>
+            <div id="profile_name"><input type="text" value="관리자"></div>
+        </div>
+    </div>
+    <div class="setting_profile">
+        <div class="checkbtn"><input type="radio"></div><div class="checkcontent">여기만</div>
+    </div>
+    <div class="setting_profile">
+        <div class="checkbtn"><input type="radio"></div><div class="checkcontent">여기부터</div>
+    </div>
+    <div class="setting_profile">
+        <div class="checkbtn"><input type="radio"></div><div class="checkcontent">전체적용</div>
+    </div>
+    <div class="button">
+        <div id="save_btn">변경</div>
+    </div>
+</div>
+*/
 
 .popup_profile{
     position: absolute;
@@ -177,32 +226,6 @@
     font-size: 12px;
 }
 
-/*
-<div class="popup_profile">
-    <div class="popup_profile_list">
-        <div class="title">
-            <div id="title_text">참석자 변경</div>
-            <div id="close">x</div>
-        </div>
-        <div class="profile">
-            <div id="profile_pic"><img src=img/chat/icon2.svg></div>
-            <div id="profile_name"><input type="text" value="관리자"></div>
-        </div>
-    </div>
-    <div class="setting_profile">
-        <div class="checkbtn"><input type="radio"></div><div class="checkcontent">여기만</div>
-    </div>
-    <div class="setting_profile">
-        <div class="checkbtn"><input type="radio"></div><div class="checkcontent">여기부터</div>
-    </div>
-    <div class="setting_profile">
-        <div class="checkbtn"><input type="radio"></div><div class="checkcontent">전체적용</div>
-    </div>
-    <div class="button">
-        <div id="save_btn">변경</div>
-    </div>
-</div>
-*/
 
 .popup_profile .setting_profile{
     display: block;
@@ -247,8 +270,23 @@
 
     cursor: pointer;
 }
+/*---------------------------------------------------------------------------------------*/
 
 
+
+
+/*---------------------------------------------------------------------------------------*/
+/*
+<div class="popup_duration">
+    <div class="duration" onclick="change_duration(0.8)">0.8x</div>
+    <div class="duration" onclick="change_duration(1)">1x</div>
+    <div class="duration" onclick="change_duration(1.2)">1.2x</div>
+    <div class="duration" onclick="change_duration(1.5)">1.5x</div>
+    <div class="duration" onclick="change_duration(1.8)">1.8x</div>
+    <div class="duration" onclick="change_duration(2)">2x</div>
+</div>
+/*
+/*
 .popup_duration{
     position: absolute;
     width: 60px;
@@ -271,7 +309,8 @@
 
     cursor: pointer;
 }
-
+*/
+/*---------------------------------------------------------------------------------------*/
 
 
 
