@@ -1,0 +1,20 @@
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .reclist{
+
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .reclist .reclist_content{
+    display: inline-block;
+
+    width: 370px;
+    margin-top: 5px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .reclist .reclist_date{
+    display: inline-block;
+}

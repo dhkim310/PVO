@@ -1,0 +1,283 @@
+
+/*--------------------------------------------<하단 레코드 버튼>-------------------------------------------------------------*/
+
+/* 하단 */
+.chat_window .bottom_wrapper #record_btn{
+    width: calc(100% - 165px);
+
+    height: 42px;
+    background-color: #ffffff;
+    min-width: 500px;
+
+    margin-left: 16px;
+    margin-bottom: 0px;
+
+    /*상하의 중간*/
+    display: flex;
+    align-items: center;
+}
+
+/*------------------*/
+/*마이크1 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_mic1_image{
+    display: inline-block;
+
+    padding-top: 0px;
+    padding-left: 5px;
+
+}
+/*마이크1 이미지*/
+.chat_window .bottom_wrapper #record_btn #bt_mic1_image img{
+    width: 15px;
+}
+/*마이크1 슬라이더 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_mic1_vol{
+    display: inline-block;
+
+    padding-top: 0px;
+    padding-left: 10px;
+
+    width: 80px;
+}
+/*------------------*/
+
+/*-------------<(공통)슬라이더>--------------*/
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #0a0a0a;
+  outline: none;
+  opacity:0.9;
+  -webkit-transition: opacity .15s ease-in-out;
+  transition: opacity .15s ease-in-out
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 100%;
+  background: #464646;
+  cursor: pointer;
+}
+/*-------------</슬라이더>--------------*/
+
+/*------------------*/
+/*마이크2 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_mic2_image{
+    display: inline-block;
+    padding-left: 20px;
+}
+
+/*마이크2 이미지*/
+.chat_window .bottom_wrapper #record_btn #bt_mic2_image img{
+    width: 15px;
+}
+
+/*마이크2 슬라이더 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_mic2_vol{
+    display: inline-block;
+
+    padding-top: 0px;
+    padding-left: 10px;
+
+/*    width: calc(100% - 91%);*/
+    width: 80px;
+}
+
+/*------------------*/
+/*스피커 역역*/
+.chat_window .bottom_wrapper #record_btn #bt_speak_image{
+    display: inline-block;
+    padding-left: 20px;
+}
+
+/*스피커 이미지*/
+.chat_window .bottom_wrapper #record_btn #bt_speak_image img{
+    width: 24px;
+}
+
+/*스피커 슬라이더 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_speak_vol{
+    display: inline-block;
+
+    padding-left: 10px;
+
+    width: 80px;
+}
+/*------------------*/
+
+
+/*------------------*/
+/*화자분리,잡음제거 텍스트 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_option_name{
+    display: block;
+
+    background-color: #ffffff;
+
+    padding-left: 20px;
+    width: 80px;
+
+/*    border: 1px solid #dedede;*/
+
+}
+
+/*화자분리 텍스트*/
+.chat_window .bottom_wrapper #record_btn #bt_option_name #sd_name{
+
+    font-weight: bold;
+    font-size: 13px;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+/*    background-color: #ffffff;    */
+/*    border: 1px solid #dedede;*/
+}
+
+/*잡음제거 텍스트*/
+.chat_window .bottom_wrapper #record_btn #bt_option_name #nr_name{
+
+    font-weight: bold;
+    font-size: 13px;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+/*    background-color: #ffffff; */
+
+/*    border: 1px solid #dedede;*/
+}
+/*------------------*/
+
+/*------------------*/
+/*체크박스 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_option{
+   display: block;
+/*   position: absolute;*/
+
+    width: 80px;
+/*    height: 45px;*/
+
+    margin-left: 0px;
+
+}
+
+/*체크박스 화자분리 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_option #sd_btn{
+
+    padding-top: 8px;
+    height: 28px;
+}
+
+/*=====================*/
+/*체크박스 화자분리*/
+.chat_window .bottom_wrapper #record_btn #bt_option #sd_btn input[type="checkbox"] {
+
+/*  position: absolute;*/
+  visibility: hidden;
+}
+
+/*(공통)체크박스*/
+label {
+
+  position: absolute;
+  width: 65px;
+  height: 16px;
+  border-radius: 17px;
+  background-color: #ddd;
+  transition-duration: 0.2s;
+}
+
+/* 공*/
+label span {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  width: 30px;
+  height: 16px;
+  border-radius: 17px;
+  background-color: #fff;
+  transition-duration: 0.2s;
+  border: 1px solid #dedede;
+}
+
+/*on,off*/
+label:before,
+label:after{
+  position: absolute;
+  top: 0;
+  width: 24px;
+  font-size: 11px;
+  line-height: 17px;
+  color: #fff;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+label:before {
+  left: 20;
+  content: 'ON';
+}
+
+label:after {
+  right: 0;
+  content: 'OFF';
+}
+
+input:checked + label {
+  background-color: #00c73c;
+}
+/* 공위치*/
+input:checked + label span {
+  /* left: 29px; */
+  transform: translateX(36px);
+}
+/*=====================*/
+
+/*체크박스 잡음제거 영역*/
+.chat_window .bottom_wrapper #record_btn #bt_option #nr_btn{
+
+
+}
+
+/*체크박스 잡음제거*/
+.chat_window .bottom_wrapper #record_btn #bt_option #nr_btn input[type="checkbox"] {
+
+/*  position: absolute;*/
+  visibility: hidden;
+}
+
+/*------------------*/
+
+
+
+.chat_window .bottom_wrapper #record_btn #bt_mic{
+    display: inline-block;
+    position: absolute;
+
+    left: calc(max(695px, 100% - 57%));  /* 최소 580px이 보장되도록 수정 */
+}
+
+.chat_window .bottom_wrapper #record_btn #bt_mic img{
+    width: 25px;
+}
+
+.chat_window .bottom_wrapper #record_btn #bt_stop{
+    display: inline-block;
+    position: absolute;
+
+    left: calc(max(740px, 100% - 54%));  /* 최소 580px이 보장되도록 수정 */
+}
+
+.chat_window .bottom_wrapper #record_btn #bt_stop img{
+    width: 29px;
+}
+
+/*---------------------------------------------------------------------------------------------------------*/

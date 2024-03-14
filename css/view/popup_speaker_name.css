@@ -1,0 +1,107 @@
+
+
+.pop_speaker_name{
+    display: none;
+
+    z-index: 15;
+}
+
+@media (min-width:1260px) {
+    .pop_speaker_name{
+        display: block;
+
+        position: absolute;
+        left: 80px;  /*80*/
+        top: 82px;
+
+
+/*      background: rgba(0, 0, 0, 0.52);    */
+        background-color: #6c6c6c;
+/*        opacity: 0.52;*/
+
+        border: 1px solid #595959;
+
+        width: calc(100% - 665px);  /*665px*/
+        height: 30px;
+        box-shadow: 5px 5px 5px #595959;
+
+        border-top-right-radius: 15px 15px;
+        border-top-left-radius: 15px 15px;
+
+        z-index: 0;
+    }
+
+
+
+    .pop_speaker_name .speaker_label1{
+        display: inline-block;
+        width: 100px;
+
+        text-align: center;
+        font-size: 20px;
+        color: #41b7d3;
+    }
+
+    .pop_speaker_name .speaker_input1{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .pop_speaker_name .speaker_input1 input[type=text]{
+        border: 1px solid #000000;
+        border-radius: 8px;
+        width: 105px;
+    }
+
+    .pop_speaker_name .speaker_btn1{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .pop_speaker_name .speaker_btn1 button{
+        border: 1px solid #000000;
+        width: 50px;
+        height: 27px;
+        border-radius: 9px;
+    }
+
+    .pop_speaker_name .empty{
+        display: inline-block;
+        width: calc(100% - 560px);
+    }
+
+
+    .pop_speaker_name .speaker_label2{
+        display: inline-block;
+        width: 100px;
+
+        text-align: center;
+        font-size: 20px;
+        color: darkorange;
+    }
+
+    .pop_speaker_name .speaker_input2{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .pop_speaker_name .speaker_input2 input[type=text]{
+        border: 1px solid #000000;
+        border-radius: 8px;
+        width: 105px;
+    }
+
+    .pop_speaker_name .speaker_btn2{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .pop_speaker_name .speaker_btn2 button{
+        border: 1px solid #000000;
+        width: 50px;
+        height: 27px;
+        border-radius: 8px;
+    }
+
+}
+

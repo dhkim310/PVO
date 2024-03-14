@@ -1,0 +1,117 @@
+
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo{
+
+    display: inline-block;
+    width: 48%;
+    height: 100%;
+    vertical-align: top;
+}
+
+/*메모틀*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper{
+    display:block;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_set{
+
+}
+
+/*시작초*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_set .memo_second{
+    display:inline-block;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #c7c7c7;
+}
+
+/*수정*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_set .memo_mod{
+    display:inline-block;
+
+    margin-left: 10px;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #c7c7c7;
+
+    cursor: pointer;
+}
+
+/*삭제*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_set .memo_del{
+    display:inline-block;
+
+    margin-left: 10px;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #c7c7c7;
+
+    cursor: pointer;
+}
+
+/*메모(숨겨진값)*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_set .memo_data{
+    display:inline-block;
+}
+
+/*메모(숨겨진값)*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_set .memo_data input[type=text]{
+    width: 35px;
+    height: 20px;
+
+    display: none;
+}
+
+/*메모 내용*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_content{
+    font-size: 13px;
+    font-family: "굴림";
+    color: #000000;
+
+    cursor: pointer;
+}
+
+/*메모 수정시 입력창*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper textarea{  /* .memo_txt */
+    width: 100%;/*640px;*/
+
+    font-size: 14px;
+
+    resize: vertical;
+    overflow-y: hidden;
+    height: auto;
+}
+
+/*메모 수정시 저장 버튼*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_bodify_btn{
+    float: right;
+    width:60px;
+    height: 18px;
+
+    margin-left: 10px;
+    background-color: #d5ff26;
+
+    border: 1px solid #d5ff26;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #0031ff;
+}
+
+/*메모 수정시 취소 버튼*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .time_memo .memo_wrapper .memo_cancel_btn{
+    float: right;
+    width:60px;
+    height: 18px;
+
+    background-color: #dedede;
+
+    border: 1px solid #dedede;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #0031ff;
+}

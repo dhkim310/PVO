@@ -1,0 +1,132 @@
+/* 채팅화면 상단 */
+.chat_window .top_menu {
+    background-color: #ffffff;
+    width: 100%;
+    margin-left: 10px;
+    padding: 10px 0 0px;   /* top / left,right / bottom */
+}
+
+.chat_window .top_menu .subject{
+
+}
+
+/* 채팅화면 상단 제목*/
+.chat_window .top_menu .subject .title {
+    display: inline-block;
+    text-align: left;
+    margin-left: 20px;
+    color: #333333;
+    font-size: 25px;
+    background-color: #ffffff;
+    width: calc(100% - 370px);
+    min-width: 250px;
+}
+
+.chat_window .top_menu .subject .search{
+    display: inline-block;
+    background-color: #ffffff;
+}
+
+/* 채팅화면 상단 우측 아이콘 div */
+.chat_window .top_menu .subject .icon {
+    display: inline-block;
+    float: right;
+    width: 140px;
+    height: 30px;
+    background-color: #ffffff;
+}
+
+/* 채팅화면 상단 우측 아이콘들 */
+.chat_window .top_menu .subject .icon .icon1{
+    margin-left: 5px;
+    width: 34px;
+    height: 34px;
+}
+
+/* 채팅화면 상단 */
+.chat_window .top_menu .ymdhis{
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 20px;
+    color: #a8a6a6;
+    font-size: 13px;
+}
+
+.chat_window .top_menu .bottom{
+    height: 0px;
+}
+/* 이름 */
+/*
+.chat_window .top_menu .bottom .view_mode{
+    position: absolute;
+    text-align: center;
+
+    display: inline-block;
+
+    margin-top: 0px;
+    margin-left: calc(100% - 560px);
+    color: #333333;
+    font-size: 14px;
+    width: 150px;
+
+    border:1px solid #000000;
+
+    border-top-right-radius: 12px 10px;                     x축 퍼센트 | y축 퍼센트
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+}
+*/
+
+/*
+.chat_window .top_menu .bottom .view_mode_test1{
+    position: absolute;
+    text-align: center;
+
+    display: inline-block;
+
+    margin-top: 0px;
+    margin-left: 10px;
+    color: #333333;
+    font-size: 14px;
+    width: 60px;
+
+    border:1px solid #000000;
+
+    border-top-right-radius: 12px 10px;                     x축 퍼센트 | y축 퍼센트
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+}
+*/
+
+/*
+.chat_window .top_menu .bottom .view_mode_test2{
+    position: absolute;
+    text-align: center;
+
+    display: inline-block;
+
+    margin-top: 0px;
+    margin-left: 80px;
+    color: #333333;
+    font-size: 14px;
+    width: 60px;
+
+    border:1px solid #000000;
+
+    border-top-right-radius: 12px 10px;                     x축 퍼센트 | y축 퍼센트
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+}
+*/
+
+/* 우측선택 */
+/*
+.chat_window .top_menu .bottom .option{
+    float: right;
+    width: 180px;
+    height: 30px;
+    background-color: #ffffff;
+}*/

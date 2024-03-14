@@ -1,0 +1,270 @@
+
+
+/* 메세지창 */
+.chat_window .middle_content .messages {
+    position: absolute;
+    list-style: none;
+    padding: 20px 10px 0 10px;
+    margin: 0;
+    width: calc(100% - 595px);
+    min-width: 600px;
+
+    /*height: 347px;*/
+    height: calc(100% - 170px);/*626px;*/
+    overflow: auto;
+    background-color: #ffffff;
+
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 0px;
+
+    border-radius: 17px;
+    border:1px solid #cbcbcb;
+}
+
+.chat_window .middle_content .messages .message {
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.5s linear;
+    opacity: 0;
+
+    margin-top: 10px;
+}
+
+.chat_window .middle_content .messages .message.appeared {
+    opacity: 1;
+}
+
+/*========================LEFT=================================*/
+
+.chat_window .middle_content .messages .message.left{
+    float: left
+}
+
+.chat_window .middle_content .messages .message.right{
+    float: right
+}
+/* 왼쪽 텍스트 프로필 */
+/*
+.chat_window .middle_content .messages .message .avatar {
+    background-color: #ffffff;
+    float: left;
+    width: 30px;
+    height: 50px;
+    border-radius: 50%;
+}
+*/
+
+/*프로필이미지*/
+/*
+.chat_window .middle_content .messages .message .avatar img {
+    width: 33px;
+    height: 33px;
+}
+*/
+
+/* 왼쪽 텍스트 이름 */
+.chat_window .middle_content .messages .message .name{
+    /* position: absolute; */
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 13px;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+
+/*시작시간*/
+.chat_window .middle_content .messages .message .st_time{
+    /* position: absolute; */
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 11px;
+    font-family: "굴림";
+    color: #b5b5b5;
+    background-color: #ffffff;
+}
+
+/*종료시간*/
+.chat_window .middle_content .messages .message .ed_time{
+   /* position: absolute;*/
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 11px;
+    font-family: "굴림";
+    color: #b5b5b5;
+    background-color: #ffffff;
+}
+
+/*메모표시*/
+.chat_window .middle_content .messages .message .memo_yn{
+    display: inline-block;
+    margin-left: 20px;
+    width: 30px;
+
+    border-radius: 10%;
+
+    font-size: 10px;
+    font-family: "굴림";
+    color: #00a0b5;
+    background-color: #abf4fd;
+    text-align: center;
+}
+
+/*북마크표시*/
+.chat_window .middle_content .messages .message .bookmark_yn{
+    display: inline-block;
+    margin-left: 5px;
+    width: 40px;
+
+    border-radius: 10%;
+
+    font-size: 10px;
+
+    color: #ffffff;
+    background-color: #e113fc;
+    text-align: center;
+}
+
+/* : */
+.chat_window .middle_content .messages .message .data{
+    display: inline-block;
+}
+
+/* 입력상자(숨겨진 input들) */
+.chat_window .middle_content .messages .message .data input[type=text]{
+    display: inline-block;
+    width: 40px;
+    height: 18px;
+
+    display: none;
+}
+
+
+/* : */
+.chat_window .middle_content .messages .message .message_menu{
+    display: inline-block;
+    float: right;
+}
+
+/* : */
+.chat_window .middle_content .messages .message .message_menu .message_menu_img{
+    width: 20px;
+    height: 15px;
+    display: none;
+}
+
+
+/* 왼쪽 텍스트박스 */
+.chat_window .middle_content .messages .message .text_wrapper {
+    position: relative;
+    display: inline-block;
+    background-color: #ffffff;
+    margin-top: 0px;
+    margin-left: 0px;
+
+    padding-left: 10px;
+
+    /*border-radius: 20% 20% 20% 20%;*/
+    /*max-width: 680px; */
+}
+
+.chat_window .middle_content .messages .message.left .text_wrapper {
+    clear:both;
+    float:left;
+    position: relative;
+    display: block;
+    background-color: #e5e5e5;
+    margin-top: 0px;
+    margin-left: 10px;
+
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+
+    border-top-right-radius: 12px 10px;                    /* x축 퍼센트 | y축 퍼센트 */
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+
+    min-width: 10px;
+    max-width: 500px;
+}
+
+.chat_window .middle_content .messages .message.right .text_wrapper {
+    clear:both;
+    float:left;
+    position: relative;
+    display: block;
+    background-color: #e5e5e5;
+    margin-top: 0px;
+    margin-left: 10px;
+
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+
+    border-top-right-radius: 12px 10px;                    /* x축 퍼센트 | y축 퍼센트 */
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+
+    min-width: 10px;
+    max-width: 500px;
+}
+
+/*본문*/
+.chat_window .middle_content .messages .message .text {
+    color: #000000;
+    font-size: 14px;
+}
+
+
+/* 본문/textarea */
+.chat_window .middle_content .messages .message .text textarea{
+    width: 100%;/*640px;*/
+
+    font-size: 14px;
+
+    resize: vertical;
+    overflow-y: hidden;
+    height: auto;
+}
+
+/* 본문/textarea/저장 */
+.chat_window .middle_content .messages .message .text .save_btn{
+    float: right;
+    width:60px;
+    height: 18px;
+
+    margin-left: 10px;
+    background-color: #d5ff26;
+
+    border: 1px solid #d5ff26;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #0031ff;
+}
+
+/* 본문/textarea/취소 */
+.chat_window .middle_content .messages .message .text .cancel_btn{
+    float: right;
+    width:60px;
+    height: 18px;
+
+    background-color: #dedede;
+
+    border: 1px solid #dedede;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #0031ff;
+}

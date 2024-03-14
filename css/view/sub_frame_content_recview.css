@@ -1,0 +1,57 @@
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview{
+
+    margin-top: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .subject{
+    display: block;
+
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .recdate{
+    display: block;
+
+    font-size: 13px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .modrecdate{
+    display: block;
+
+    font-size: 13px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .recview_list{
+    margin-top: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .recview_list .list{
+    display: block;
+    width: 460px;
+
+    padding-bottom: 10px;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .recview_list .list .name{
+    display: inline-block;
+
+    width: 60px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .recview_list .list .start_time{
+    display: inline-block;
+
+    font-size: 14px;
+    color: #acacac;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .recview .recview_list .list .text{
+
+    font-size: 14px;
+
+}
