@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
+    <link href="../css/login.css" rel="stylesheet"/>
+    <link href="../css/registration.css" rel="stylesheet"/>
+
+    <script src=../js/jquery.js></script>
+    <script src="../js/login.js" type="text/javascript"></script>
+    <title>Login</title>
+</head>
+
+<body>
+<div id="whole">
+    <div class="login_window">
+        <div class="pv_logo"></div>
+        <div class="login">
+            <input type="text" placeholder="아이디" id="login_id">
+            <input type="password" placeholder="비밀번호" id="login_pwd">
+            <input type="checkbox"/>
+            <span class="login_keep">로그인 상태 유지</span>
+            <span class="explanation">안내 문구 출력</span>
+            <button class="login_btn" onclick=login()>로그인</button>
+        </div>
+        <a href="#" class="find">아이디 / 비밀번호 찾기</a>
+        <a href="#" class="account" onclick="account()">계정 등록</a>
+    </div>
+</div>
+
+<div id="registration" style="display: none">
+    <div class="registration_window">
+        <div class="registration">
+            <div class="pv_logo"></div>
+            <div class="registration_input">
+                <input type="text" placeholder="아이디" id="registration_id">
+                <input type="password" placeholder="비밀번호" onkeyup="checkPassword()" id="registration_pwd">
+                <div id="password_check">
+                    <input type="password" placeholder="비밀번호 확인" onkeyup="checkPassword()" id="registration_pwd2">
+                    <span id="match">일치</span>
+                    <span class="slash">/</span>
+                    <span id="mismatch">불일치</span>
+                </div>
+                <input type="text" placeholder="사원명" class="emp_name">
+                <input type="text" placeholder="사원번호" class="emp_no">
+                <span class="explanation">안내 문구 출력</span>
+                <button class="registration_btn" onclick="accountRegistration()">등록</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
