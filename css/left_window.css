@@ -1,14 +1,15 @@
-.left_window{
+.left_window {
     position: absolute;
-    left: 0px;
-    top: 0px;
+    top: 0;
+    left: 0;
     width: 70px;
     height: 100%;
     background-color: #ffffff;
     border-right: 1px solid #dedede;
     border-radius: 17px;
+    z-index: 999; /* 다른 요소들 위에 나타내기 */
+    overflow-y: auto;
 }
-
 /*
 .left_window .top_menu {
     background-color: #ffffff;

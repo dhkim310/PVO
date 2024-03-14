@@ -5,7 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
     <link href="../css/voice_authentication.css" rel="stylesheet"/>
+
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/recorder.js"></script>
+    <script src="../js/login.js"></script>
     <title>Document</title></head>
+<script>
+    function show_enroll_percent(net_speech) {
+        //enroll
+        enroll_percent = net_speech * 1.6666;
+        console.log("NETSPEECH :" + net_speech + " PERCENT :" + enroll_percent);
+
+        var tmp = parseInt(enroll_percent);
+        $('.progress-bar').css("width", tmp + "%");
+        $('.progress-text').text(tmp + "%");
+        //var percent_val = tmp;
+        //console.log(percent_val);
+
+    }
+</script>
+
 <body>
 <div class="whole">
     <div class="authentication_window">
@@ -13,7 +32,11 @@
         <div class="authentication">
             <span class="guide_text_1">아래 문구를 소리내어 읽어주세요.</span>
             <span class="guide_text_2">“내 목소리로 인증”</span>
-            <div class="progress_bar"></div>
+            <div class="parse_pending border" style="margin-top: 40px;">
+                <div class="progress-bar success">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

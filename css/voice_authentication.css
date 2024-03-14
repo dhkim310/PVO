@@ -15,7 +15,31 @@ body {
     top: 0px;
     left: 0px;
 }
+.parse_pending {
+    width: 700px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    position: absolute;
+    top: 370px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.success {
+    width: 0%;
+    background: linear-gradient(to right, #78F5F5, #3057FA);
+    transition: all 0.5s ease-out;
+}
 
+.progress-text {
+    color: black;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+}
 .whole .authentication_window {
     width: 1000px;
     height: 800px;

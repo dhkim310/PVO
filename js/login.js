@@ -1,8 +1,84 @@
+/* 로그인 */
+function login(){
+    let loginId = document.getElementById('login_id').value;
+    let loginPwd = document.getElementById('login_pwd').value;
+    if(loginId === '' || loginPwd === ''){
+        alert('아이디와 비밀번호를 입력하세요');
+    }else {
+        alert('로그인 성공');
+        window.location.href = 'VoiceAuthentication.html';
+    }
+}
+
+/* 비밀번호 확인 ( 일치 / 불일치 ) */
+function checkPassword() {
+    let password1 = document.getElementById('registration_pwd').value;
+    let password2 = document.getElementById('registration_pwd2').value;
+    if (password1 === password2 && password1 !== '') {
+        document.getElementById('match').style.color = 'rgb(0, 200, 0)';
+        document.getElementById('mismatch').style.color = 'black';
+    } else {
+        document.getElementById('match').style.color = 'black';
+        if (password2 !== '') {
+            document.getElementById('mismatch').style.color = 'red';
+        } else {
+            document.getElementById('mismatch').style.color = 'black';
+        }
+    }
+}
+function accountRegistration(){
+    let id = document.getElementById('registration_id').value;
+    let password1 = document.getElementById('registration_pwd').value;
+    let password2 = document.getElementById('registration_pwd2').value;
+    let empName = document.querySelector('.emp_name').value;
+    let empNo = document.querySelector('.emp_no').value;
+
+    if (id === '') {
+        alert('아이디를 입력해주세요.');
+        return;
+    }
+    if (password1 === '' || password2 === '') {
+        alert('비밀번호를 입력해주세요.');
+        return;
+    }
+    if (empName === '') {
+        alert('사원명을 입력해주세요.');
+        return;
+    }
+    if (empNo === '') {
+        alert('사원번호를 입력해주세요.');
+        return;
+    }
+
+    // 비밀번호 일치 여부 확인
+    if (password1 !== password2){
+        alert('비밀번호가 일치하지 않습니다.');
+        document.getElementById('registration_pwd').value = '';
+        document.getElementById('registration_pwd2').value = '';
+    } else {
+        alert('비밀번호가 일치합니다.');
+        window.location.href = 'VoiceRegistration.html';
+    }
+}
+
+/*
+function accountRegistration(){
+    let password1 = document.getElementById('registration_pwd').value;
+    let password2 = document.getElementById('registration_pwd2').value;
+    if( password1 !== password2){
+        alert('비밀번호가 일치하지 않습니다.');
+    }else {
+        alert('비밀번호가 일치합니다.');
+        window.location.href = 'VoiceRegistration.html';
+    }
+}
+ */
+
 function account(){
     $("#whole").hide();
     $("#registration").show();
     $(".explanation").css({
-        "top": "315px"
+        "top": "375px"
     });
 }
 
@@ -108,10 +184,3 @@ function drawMic(inputData) {
 
     // console.log("inputData:" + inputData + "  percent:" + percentage + "%");
 }
-
-/* curve */
-$('#center-container').css({
-    'background': '#22425f url(/VOIS/sttsv-visualizer/img/only-curve-1.svg) center',
-    'background-size': '100% auto',
-    'background-repeat': 'no-repeat'
-});

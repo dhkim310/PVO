@@ -18,7 +18,7 @@ body {
 }
 #registration .registration_window {
   width: 480px;
-  height: 698px;
+  height: 800px;
   background-size: cover;
   opacity: 1;
   position: absolute;
@@ -30,7 +30,7 @@ body {
 
 #registration .registration_window .registration {
   width: 480px;
-  height: 700px;
+  height: 800px;
   background: rgba(255,255,255,1);
   padding: 25px 23px;
   margin: 19px;
@@ -44,7 +44,7 @@ body {
 
 #registration .registration_window .registration .registration_input {
   width: 440px;
-  height: 465px;
+  height: 500px;
   background: rgba(249,249,249,1);
   opacity: 1;
   position: absolute;
@@ -54,6 +54,80 @@ body {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
+
+#registration .registration_window .registration .registration_input #password_check {
+  width: 360px;
+  height: 50px;
+  background: rgba(255,255,255,1);
+  opacity: 1; /* 불투명도 */
+  position: absolute;
+  top: 180px;
+  left: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#registration .registration_window .registration .registration_input #registration_id {
+  width: 360px;
+  height: 50px;
+  font-family: 'Roboto', sans-serif;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+/* 비밀번호 입력 */
+#registration .registration_window .registration .registration_input #registration_pwd {
+  width: 360px;
+  height: 50px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 110px;
+  left: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 비밀번호 확인 */
+#registration .registration_window .registration .registration_input #password_check #registration_pwd2 {
+  width: 360px;
+  height: 50px;
+  background: rgba(255,255,255,1);
+  opacity: 1; /* 불투명도 */
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+/* 일치 / 불일치 스타일 */
+#registration .registration_window .registration .registration_input #password_check #match,
+#registration .registration_window .registration .registration_input #password_check .slash,
+#registration .registration_window .registration .registration_input #password_check #mismatch {
+  position: absolute;
+  font-family: Inter, system-ui;
+  top: 15px;
+  font-size: 17px;
+  color: black;
+}
+
+#registration .registration_window .registration .registration_input #password_check #match {
+  top: 14px;
+  left: 254px;
+}
+#registration .registration_window .registration .registration_input #password_check .slash {
+  top:16px;
+  left: 290px;
+}
+#registration .registration_window .registration .registration_input #password_check #mismatch {
+  top: 14px;
+  right: 10px;
+}
+
 /* 사원 이름 */
 #registration .registration_window .registration .registration_input .emp_name {
   width: 360px;
@@ -61,7 +135,7 @@ body {
   background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
-  top: 180px;
+  top: 250px;
   left: 40px;
   border-radius: 10px;
   overflow: hidden;
@@ -73,7 +147,7 @@ body {
   background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
-  top: 250px;
+  top: 315px;
   left: 40px;
   border-radius: 10px;
   overflow: hidden;
@@ -93,7 +167,7 @@ body {
   cursor: pointer;
   outline: none;
   position: absolute;
-  top: 375px;
+  top: 405px;
   left: 40px;
   opacity: 1;
   text-align: center;
