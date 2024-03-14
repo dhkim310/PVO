@@ -85,7 +85,7 @@ input[type=password]{
   outline: none;
 }
 /* 아이디 입력 */
-.login_id {
+#whole .login_window .login #login_id {
   width: 360px;
   height: 50px;
   font-family: 'Roboto', sans-serif;
@@ -98,7 +98,7 @@ input[type=password]{
   overflow: hidden;
 }
 /* 비밀번호 입력 */
-.login_pwd {
+#whole .login_window .login #login_pwd {
   width: 360px;
   height: 50px;
   background: rgba(255,255,255,1);
