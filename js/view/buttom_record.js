@@ -30,12 +30,44 @@ function Record_Set()
 }
 
 
+function CheckInputSubjectName()
+{
+    //제목을 입력했는지 검사
+    if($.trim($("#subject_input").val())=='')
+    {
+        alert("제목을 입력해주세요.");
+        $("#subject_input").focus();
+        return false;
+    }
+
+    if($.trim($("#speaker1_input").val())=='')
+    {
+        alert("이름을 입력해주세요.");
+        $("#speaker1_input").focus();
+        return false;
+    }
+
+    if($.trim($("#speaker2_input").val())=='')
+    {
+        alert("이름을 입력해주세요.");
+        $("#speaker2_input").focus();
+        return false;
+    }
+}
 
 //가녹취 팝업
 function onFakeRecord()
 {
-    $(".shadow").show(); // 배경 어둡게
+    //제목과 이름을 입력했는지 검사
+    if(false == CheckInputSubjectName())
+    {
+        return false;
+    }
 
+    // 배경 어둡게
+    $(".shadow").show();
+
+    //가녹취 팝업창 띄우기
      var html = '<div class="popup_fake_record_msg">'
                     +'<div class="fake_record_msg">가녹취를 시작합니다.</div>'
                     +'<div class="btn">'
@@ -53,7 +85,7 @@ function onFakeRecord()
         });
 
 
-    //
+    //확인버튼
     $('#ok_btn').click(function(){
 
         global_record_mode = "FAKE";   //가 녹취모드로 변경
@@ -66,7 +98,7 @@ function onFakeRecord()
         $('.wrap').off('scroll touchmove mousewheel');
     });
 
-    //
+    //취소버튼
     $('#cancel_btn').click(function(){
         $(".popup_fake_record_msg").remove();
         $('.shadow').hide(); // 배경 어둡게 삭제
@@ -84,8 +116,16 @@ backup_func_FakeRecord = onFakeRecord;
 //실녹취 팝업
 function onRealRecord()
 {
-    $(".shadow").show(); // 배경 어둡게
+    //제목과 이름을 입력했는지 검사
+    if(false == CheckInputSubjectName())
+    {
+        return false;
+    }
 
+    // 배경 어둡게
+    $(".shadow").show();
+
+    //실녹취 팝업창 띄우기
      var html = '<div class="popup_real_record_msg">'
                     +'<div class="real_record_msg">실녹취를 시작합니다.</div>'
                     +'<div class="btn">'
@@ -103,7 +143,7 @@ function onRealRecord()
         });
 
 
-    //
+    //확인버튼
     $('#ok_btn').click(function(){
 
         //가녹취, 레코딩중이라면...
@@ -123,7 +163,7 @@ function onRealRecord()
         $('.wrap').off('scroll touchmove mousewheel');
     });
 
-    //
+    //취소버튼
     $('#cancel_btn').click(function(){
         $(".popup_real_record_msg").remove();
         $('.shadow').hide(); // 배경 어둡게 삭제
@@ -145,6 +185,10 @@ function onRecord()
 
         //onclick="onFakeRecord()"함수를 onRealRecord()로 변경
         onFakeRecord = onRealRecord;
+
+        //웹소켓 서버에 접속
+
+        //웹소켓접속후 "fake"메세지 전송
     }
 
     //실녹취
@@ -155,9 +199,14 @@ function onRecord()
 
         //onclick="onFakeRecord()"함수를 onRecordPause()로 변경
         onFakeRecord = onRecordPause;
+
+        //웹소켓 서버에 접속되어있다면...
+
+        //"real"메세지 전송
     }
 
-
+    //-------------<테스트용 실적용시 필요없음>---------------------
+    //미적용시 timer관련 지울것
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(function(mediaStream) {
 
@@ -183,6 +232,7 @@ function onRecord()
         });
 
       });
+    //-------------</테스트용 실적용시 필요없음>---------------------
 }
 
 
@@ -314,6 +364,10 @@ function RecordStop()
 {
     global_record_state = "STOP"; //record stop으로 변경
 
+
+    //-------------<테스트용 실적용시 필요없음>---------------------
+    //미적용시 timer관련 지울것
+
     if (stream) {
       clearInterval(timer); //타이머 종료
 
@@ -322,6 +376,7 @@ function RecordStop()
       });
 
     }
+    //-------------</테스트용 실적용시 필요없음>---------------------
 }
 
 
@@ -382,6 +437,8 @@ function mic1_volumn()
     var slider = $("#mic1_volumn");
     slider.on("input", function() {
         console.log("mic1_volumn:" + $(this).val());
+
+        Set_Vr_Mic1_Vol($(this).val());
     });
 }
 
@@ -391,7 +448,31 @@ function mic2_volumn()
     var slider = $("#mic2_volumn");
     slider.on("input", function() {
         console.log("mic2_volumn:" + $(this).val());
+
+        Set_Vr_Mic2_Vol($(this).val());
     });
+}
+
+//Java를 통해 화자분리 마이크1 볼륨을 쉡스크립트로 저장하기
+function Set_Vr_Mic1_Vol(volume)
+{
+    //java를 통해 마이크1 볼륨 처리...
+
+    //mic1의 슬라이더를 이동
+    $("#mic1_volumn").val(volume);
+
+    console.log("마이크1 볼륨을:" + volume + "% 으로 조정하였습니다.");
+}
+
+//Java를 통해 화자분리 마이크2 볼륨을 쉡스크립트로 저장하기
+function Set_Vr_Mic2_Vol(volume)
+{
+    //java를 통해 마이크2 볼륨 처리...
+
+    //mic2의 슬라이더를 이동
+    $("#mic2_volumn").val(volume);
+
+    console.log("마이크2 볼륨을:" + volume + "% 으로 조정하였습니다.");
 }
 
 //레코드 스피커 볼륨시
@@ -400,6 +481,59 @@ function speaker_volumn()
     var slider = $("#speaker_volumn");
     slider.on("input", function() {
         console.log("speaker_volumn:" + $(this).val());
+    });
+}
+
+
+//화자분리 모드변경 체크박스 상태 변경시 BackEnd에서 화자분리쪽으로 웹소켓방식으로 데이터를 보냄
+function ChangeMode_checkCheckboxes()
+{
+    var checkbox_sd = $('#checkbox_sd').is(':checked');
+    var checkbox_nr = $('#checkbox_nr').is(':checked');
+    var output = "";
+
+    if (!checkbox_sd && !checkbox_nr)
+    {
+        output = "wr_off";
+    } else if (checkbox_sd && !checkbox_nr)
+    {
+        output = "wr_a__";
+    } else if (!checkbox_sd && checkbox_nr)
+    {
+        output = "wr_b__";
+    } else if (checkbox_sd && checkbox_nr)
+    {
+        output = "wr_ab_";
+    }
+
+    console.log("화자분리 모드변경:" + output);
+
+    //----<Ajax로 DB에 데이터를 저장>----
+    var url = "json/change_mode.html?mode="+output+"";
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "text",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        success: function (json)
+        {
+            var jsonObj = jQuery.parseJSON(json);
+			console.log(jsonObj);
+
+			if(jsonObj.state != "Y")
+			{
+                alert("모드변경 실패");
+			}
+
+        },
+
+        error: function (request, status, error)
+        {
+            console.log(error);
+            alert('죄송합니다. 서버 연결에 실패했습니다_1.');
+        }
+
     });
 }
 

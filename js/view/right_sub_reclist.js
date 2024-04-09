@@ -110,15 +110,4 @@ function Add_reclists_content(main_idx, subject, date, location)
 
 
     $(selecter).append(aa);
-
-
-    //-------------타임메모 늘러날때 전체메모 늘어나게 하려고 했는데...잘안됨 보강해야함
-
-//        $('.chat_window .middle_content .sub_content .sub_frame #sub_frame_content_data1 .time_memo').on('scroll', function() {
-//            var time_memo_height = $(this).height();
-//            console.log("-------------height:" + time_memo_height);
-//            $('.chat_window .middle_content .sub_content .sub_frame #sub_frame_content_data1 .all_memo_tarea').height(time_memo_height);
-//        });
-
-
 }

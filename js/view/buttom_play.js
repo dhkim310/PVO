@@ -15,6 +15,15 @@ function play_audioRate()
     var slider = $("#play_audioRate");
     slider.on("input", function() {
         console.log("play_audioRate:" + $(this).val());
+
+        //WaveSurfer의 재생속도를 변경
+        wavesurfer.setPlaybackRate($(this).val());
+
+        $("#play_audioRate_tooltip").html($(this).val());
+        // 툴팁 위치 조정
+        //const percent = (this.value - this.min) / (this.max - this.min);
+        //const offset = percent * (this.offsetWidth - 30); // 30은 툴팁의 대략적인 너비입니다.
+        //tooltipValue.style.left = $(this).val();
     });
 }
 
@@ -104,17 +113,17 @@ function WavPlay_range(start,end)
 
 
 //------------<오디오 스피드를 조절한다>------------
-function change_duration(speed){
-
-    //팝업 스피드를 닫는다.
-    $(".popup_duration").remove();
-
-    wavesurfer.setPlaybackRate(speed);
-
-    //내용을 변경한다.
-    var selecter = $("#speed");
-    $(selecter).html(speed + "x");
-}
+//function change_duration(speed){
+//
+//    //팝업 스피드를 닫는다.
+//    $(".popup_duration").remove();
+//
+//    wavesurfer.setPlaybackRate(speed);
+//
+//    //내용을 변경한다.
+//    var selecter = $("#speed");
+//    $(selecter).html(speed + "x");
+//}
 //------------</오디오 스피드를 조절한다>------------
 
 //--------------------------</WaveSurfer Method>-------------------------------------
@@ -202,7 +211,7 @@ function onFollowText()
 
 
     $("#bt_text_follow").toggleClass("checked");
-    isButtonChecked = $("#bt_text_follow").hasClass("checked");
+    global_text_follow_Checked = $("#bt_text_follow").hasClass("checked");
 
     console.log("텍스트 따라가기:" + isButtonChecked);
 

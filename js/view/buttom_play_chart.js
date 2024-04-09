@@ -221,7 +221,13 @@ function create_wavesurfer(local_wave_file_name)
 
                 //배열에 저장된 값에서 index값 위치에있는 값을 적용한다.
                 var scroll_top = global_scroll_positon_arr[select_index_val]-350;
-                $('.messages').animate({scrollTop : scroll_top}, 500);
+
+                //하단버튼의 "텍스트 따라가기" 체크시..
+                if(global_text_follow_Checked == true)
+                {
+                    $('.messages').animate({scrollTop : scroll_top}, 500);
+                }
+
                 //----------</선택좌표로 이동하기위해>---------
 
                 console.log("PLAY------------------------------------------------------");
@@ -269,7 +275,7 @@ function create_wavesurfer(local_wave_file_name)
 //--------------------------</WaveSurfer>-------------------------------------
 
 
-function get_playchart_memo_data(workid, get_url)
+function get_playchart_memo_data(get_url)
 {
     $.ajax({
         url: get_url,
@@ -310,7 +316,7 @@ function get_playchart_memo_data(workid, get_url)
 
 
 //북마크 불러오기
-function get_playchart_bookmark_data(workid, get_url)
+function get_playchart_bookmark_data(get_url)
 {
     $.ajax({
         url: get_url,

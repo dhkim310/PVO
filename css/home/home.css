@@ -1,0 +1,437 @@
+#whole {
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+}
+
+#whole .img_window{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/*
+<div class="img_window">
+    <div class="record_window">
+        <div class="record_frame">
+            <div class="record_img"><img src="../img/mic.png"></div>
+        </div>
+        <span class="img_text">녹취</span>
+    </div>
+    <div class="list_window">
+        <div class="list_frame">
+            <div class="list_img"><img src="../img/list.png"></div>
+        </div>
+        <span class="img_text">목록</span>
+    </div>
+    <div class="setting_window">
+        <div class="setting_frame">
+            <div class="setting_img"><img src="../img/setting.png"></div>
+        </div>
+        <span class="img_text">설정</span>
+    </div>
+</div>
+*/
+/* ------------------녹취--------------------------- */
+
+#whole .img_window .record_window{
+    display: inline-block;
+    width: 300px;
+    height: 370px;
+/*    border: 1px solid black;*/
+
+/*    margin-left: 100px;*/
+}
+
+
+#whole .img_window .record_window .record_frame {
+  width: 300px;
+  height: 300px;
+  background: rgba(240,171,150,1);
+
+  top: 0px;
+  left: 0px;
+  border-radius: 75px;
+}
+
+#whole .img_window .record_window .record_frame .record_img img{
+    width: 300px;
+    height: 300px;
+}
+
+
+#whole .img_window .record_window .img_text{
+    display: block;
+    margin-top: 10px;
+    font-family: Inter;
+    font-size: 42px;
+    text-align: center;
+}
+/* ------------------목록--------------------------- */
+
+#whole .img_window .list_window{
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+/*    border: 1px solid black;*/
+
+    margin-left: 100px;
+}
+
+#whole .img_window .list_window .list_frame {
+  width: 300px;
+  height: 300px;
+  background: rgba(154,201,244,1);
+
+  top: 0px;
+  left: 0px;
+  border-radius: 75px;
+}
+
+#whole .img_window .list_window .list_frame .list_img img{
+    width: 270px;
+    height: 260px;
+
+    margin-top: 16px;
+    margin-left: 18px;
+}
+
+
+#whole .img_window .list_window .img_text{
+    display: block;
+    margin-top: 10px;
+    font-family: Inter;
+    font-size: 42px;
+    text-align: center;
+}
+
+/* ------------------설정--------------------------- */
+
+#whole .img_window .setting_window{
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+/*    border: 1px solid black;*/
+
+    margin-left: 100px;
+}
+
+#whole .img_window .setting_window .setting_frame {
+  width: 300px;
+  height: 300px;
+  background: rgba(159,233,162,1);
+
+  top: 0px;
+  left: 0px;
+  border-radius: 75px;
+}
+
+#whole .img_window .setting_window .setting_frame .setting_img img{
+    width: 300px;
+    height: 300px;
+}
+
+
+#whole .img_window .setting_window .img_text{
+    display: block;
+    margin-top: 10px;
+    font-family: Inter;
+    font-size: 42px;
+    text-align: center;
+}
+
+/* --------------------------------------------- */
+
+/*
+<div id="button_window">
+    <div id="recent_window">
+        <button id="recent_button"><span>최근</span></button>
+    </div>
+    <div id="favorite_window">
+        <button id="favorite_button"><span>즐겨찾기</span></button>
+    </div>
+    <div id="trash_window">
+        <button id="trash_button"><span>휴지통</span></button>
+    </div>
+</div>
+*/
+
+
+#whole #button_window{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#whole #button_window #recent_window{
+    display: inline-block;
+
+    margin-left: 50px;
+}
+
+#whole #button_window #recent_window #recent_button{
+    width: 180px;
+    height: 60px;
+    background: rgba(255,255,255,1);
+
+    border: 2px solid rgba(0,0,0,1);
+    border-radius: 30px;
+}
+
+#whole #button_window #recent_window #recent_button span{
+    font-family: Inter;
+    font-size: 32px;
+
+    text-align: center;
+}
+
+/*----------------*/
+#whole #button_window #favorite_window{
+    display: inline-block;
+
+    margin-left: 50px;
+}
+
+#whole #button_window #favorite_window #favorite_button{
+    width: 180px;
+    height: 60px;
+    background: rgba(255,255,255,1);
+
+    border: 2px solid rgba(0,0,0,1);
+    border-radius: 30px;
+}
+
+#whole #button_window #favorite_window #favorite_button span{
+    font-family: Inter;
+    font-size: 32px;
+
+    text-align: center;
+}
+/*----------------*/
+
+#whole #button_window #trash_window{
+    display: inline-block;
+
+    margin-left: 50px;
+}
+
+#whole #button_window #trash_window #trash_button{
+    width: 180px;
+    height: 60px;
+    background: rgba(255,255,255,1);
+
+    border: 2px solid rgba(0,0,0,1);
+    border-radius: 30px;
+}
+
+#whole #button_window #trash_window #trash_button span{
+    font-family: Inter;
+    font-size: 32px;
+
+    text-align: center;
+}
+
+/* --------------------------------------------- */
+
+/*
+<div id="info_window">
+    <div id="info_line">
+        <span id="title">제목</span>
+        <span id="category">분류</span>
+        <span id="length">녹음 길이</span>
+        <span id="recording_date">녹음 일자</span>
+        <span id="last_modified">최종수정일자</span>
+    </div>
+    <div class="content">
+        <p>
+            <a href="#" class="title"><strong>이보워님 셋톱박스 설치 문의</strong></a>
+            <span class="category">기기 설치</span>
+            <span class="length">5분 14초</span>
+            <span class="recording_date">2024. 1. 31. (수) 14:11</span>
+            <span class="last_modified">2024. 2. 2 (금) 10:45</span>
+        </p>
+        <p>
+            <a href="#" class="title"><strong>이보워님 셋톱박스 설치 문의</strong></a>
+            <span class="category">기기 설치</span>
+            <span class="length">5분 14초</span>
+            <span class="recording_date">2024. 1. 31. (수) 14:11</span>
+            <span class="last_modified">2024. 2. 2 (금) 10:45</span>
+        </p>
+        <p>
+            <a href="#" class="title"><strong>이보워님 셋톱박스 설치 문의</strong></a>
+            <span class="category">기기 설치</span>
+            <span class="length">5분 14초</span>
+            <span class="recording_date">2024. 1. 31. (수) 14:11</span>
+            <span class="last_modified">2024. 2. 2 (금) 10:45</span>
+        </p>
+        <p>
+            <a href="#" class="title"><strong>이보워님 셋톱박스 설치 문의</strong></a>
+            <span class="category">기기 설치</span>
+            <span class="length">5분 14초</span>
+            <span class="recording_date">2024. 1. 31. (수) 14:11</span>
+            <span class="last_modified">2024. 2. 2 (금) 10:45</span>
+        </p>
+        <p>
+            <a href="#" class="title"><strong>이보워님 셋톱박스 설치 문의</strong></a>
+            <span class="category">기기 설치</span>
+            <span class="length">5분 14초</span>
+            <span class="recording_date">2024. 1. 31. (수) 14:11</span>
+            <span class="last_modified">2024. 2. 2 (금) 10:45</span>
+        </p>
+    </div>
+</div>
+*/
+
+#whole #info_window {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center; /* 중앙 정렬을 위해 추가 */
+    flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+
+    border: 1px solid #ff0000;
+}
+
+#whole #info_window #info_line{
+    display: block;
+
+    border: 1px solid #ff0000;
+}
+
+
+
+
+#whole #info_window #info_line #title{
+    display: inline-block;
+    width: 270px;
+    color: rgba(120 ,120, 120, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+}
+
+#whole #info_window #info_line #category{
+    display: inline-block;
+    width: 170px;
+    color: rgba(120 ,120, 120, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+}
+
+#whole #info_window #info_line #length{
+    display: inline-block;
+    width: 170px;
+    color: rgba(120 ,120, 120, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+}
+
+#whole #info_window #info_line #recording_date{
+    display: inline-block;
+    width: 170px;
+    color: rgba(120 ,120, 120, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+}
+
+#whole #info_window #info_line #last_modified{
+    display: inline-block;
+    width: 270px;
+    color: rgba(120 ,120, 120, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+}
+
+
+
+
+#whole #info_window .content{
+    display: block;
+
+    border: 1px solid #ff0000;
+
+
+}
+
+
+
+#whole #info_window .content .list{
+    display: block;
+    margin-top: 5px;
+}
+
+#whole #info_window .content .list .title{
+    display: inline-block;
+
+    width: 270px;
+    color: rgba(0 ,0, 0, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+    text-decoration-line: none;
+}
+#whole #info_window .content .list .category{
+    display: inline-block;
+
+    width: 170px;
+    color: rgba(0 ,0, 0, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+    text-decoration-line: none;
+}
+#whole #info_window .content .list .length{
+    display: inline-block;
+
+    width: 170px;
+    color: rgba(0 ,0, 0, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+    text-decoration-line: none;
+}
+#whole #info_window .content .list .recording_date{
+    display: inline-block;
+
+    width: 170px;
+    color: rgba(0 ,0, 0, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+    text-decoration-line: none;
+}
+#whole #info_window .content .list .last_modified{
+    display: inline-block;
+
+    width: 270px;
+    color: rgba(0 ,0, 0, 1);
+
+    font-family: Inter;
+    font-size: 17px;
+
+    text-align: center;
+    text-decoration-line: none;
+}

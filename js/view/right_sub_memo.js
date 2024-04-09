@@ -102,7 +102,7 @@ function get_memo_list_data(get_url, location)
 
             for(var i=0; i<listLen; i++)
             {
-                var main_idx    = jsonObj.view_memo_datas[i].main_idx;
+                var main_idx   = jsonObj.view_memo_datas[i].main_idx;
                 var index      = jsonObj.view_memo_datas[i].index;
                 var start_time = jsonObj.view_memo_datas[i].start_time;
                 var end_time   = jsonObj.view_memo_datas[i].end_time;
@@ -155,7 +155,7 @@ function Add_memo_content(main_idx, index, start_time, end_time, memo_text, loca
     var add_memo_wrapper =   '<div class="memo_wrapper">'
                                 +'<div class="memo_set" id="id_memo_set_'+index+'">'
                                                     +'<div class="memo_second">'+SecondToHis(start_time)+'</div>'
-                                                    +'<div class="memo_mod" onclick="memo_modify(\''+main_idx+'\','+index+','+start_time+','+end_time+',\''+memo_text+'\')">수정</div>'
+                                                    +'<div class="memo_mod" onclick="memo_modify(\''+main_idx+'\','+index+','+start_time+','+end_time+',\''+memo_text+'\','+location+')">수정</div>'
                                                     +'<div class="memo_del" onclick="ajax_memo_delete(\''+main_idx+'\','+index+','+start_time+','+end_time+',\''+memo_text+'\')">삭제</div>'
                                                     +'<div class="memo_data">'
                                                             +'<input type="text" id="start_time_memo" value="'+start_time+'">'
@@ -260,7 +260,7 @@ function bottom_memo_point_reload(workid)
 
 
     //<Ajax를 통해 하단 그래프에 메모 시점을 다시불러온다>
-    get_memo_list_data(main_idx, "json/view_memo_data.html?workid="+workid);
+    //get_memo_list_data(main_idx, "json/view_memo_data.html?workid="+workid);
 
     /*
     //DB의 메모정보

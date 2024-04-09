@@ -1,5 +1,5 @@
 //메모 수정화면 생성
-function memo_modify(main_idx, index, start_time, end_time, memo_text){
+function memo_modify(main_idx, index, start_time, end_time, memo_text, location){
 
     //열려있는 모든 textarea .memo_txt 닫기
     cancel_memo_modify_txt();
@@ -13,14 +13,14 @@ function memo_modify(main_idx, index, start_time, end_time, memo_text){
 
     //내용밑에 textarea, button을 추가한다.
     var tag =  "<textarea class='memo_txt' id='ta_memo_"+index+"'>"+memo_text+"</textarea>"
-              +"<input type='button' class='memo_bodify_btn' id='id_memo_modify_btn_"+index+"' value='저장' onclick='ajax_memo_modify_txt(\""+main_idx+"\","+index+","+start_time+","+end_time+")'>"
+              +"<input type='button' class='memo_bodify_btn' id='id_memo_modify_btn_"+index+"' value='저장' onclick='ajax_memo_modify_txt(\""+main_idx+"\","+index+","+start_time+","+end_time+","+location+")'>"
               +"<input type='button' class='memo_cancel_btn' onclick='cancel_memo_modify_txt()' value='취소'>";
     $(selecter).append(tag);
 }
 
 
 //메모 수정 버튼 클릭시
-function ajax_memo_modify_txt(main_idx, index, start_time, end_time){
+function ajax_memo_modify_txt(main_idx, index, start_time, end_time, location){
 
     //textarea의 값을 읽어서
     var textarea_ta_memo_val = $("#ta_memo_" + index).val();
@@ -52,7 +52,7 @@ function ajax_memo_modify_txt(main_idx, index, start_time, end_time){
                 //--Ajax성공할경우 아래작업 수행---
 
                 //2.Ajax로 값을 불러와라
-                get_memo_list_data(main_idx, "json/view_memo_data2.html?workid=workid");
+                get_memo_list_data("json/view_memo_data2.html?main_idx="+main_idx+"", location);
 
                 /*
                 //작성한 내용으로 변경

@@ -1,9 +1,13 @@
 /* 채팅화면 상단 */
 .chat_window .top_menu {
     background-color: #ffffff;
-    width: 100%;
+    width: calc(100% - 11px);
     margin-left: 10px;
     padding: 10px 0 0px;   /* top / left,right / bottom */
+
+/*    border: 1px solid #ff0000;*/
+
+    height: 72px;
 }
 
 .chat_window .top_menu .subject{
@@ -14,12 +18,27 @@
 .chat_window .top_menu .subject .title {
     display: inline-block;
     text-align: left;
-    margin-left: 20px;
+    margin-left: 0px;
     color: #333333;
     font-size: 25px;
     background-color: #ffffff;
     width: calc(100% - 370px);
     min-width: 250px;
+
+
+/*    height: 41px;*/
+}
+
+/*제목입력창*/
+.chat_window .top_menu .subject .title #subject_input{
+    width: calc(100% - 210px);
+
+    border: 1px solid #d1d1d1;
+
+    border-top-right-radius: 12px 10px;                     /* x축 퍼센트 | y축 퍼센트*/
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
 }
 
 .chat_window .top_menu .subject .search{
@@ -47,7 +66,7 @@
 .chat_window .top_menu .ymdhis{
     text-align: left;
     margin-top: 5px;
-    margin-left: 20px;
+    margin-left: 0px;
     color: #a8a6a6;
     font-size: 13px;
 }
@@ -55,6 +74,11 @@
 .chat_window .top_menu .bottom{
     height: 0px;
 }
+
+
+
+
+
 /* 이름 */
 /*
 .chat_window .top_menu .bottom .view_mode{

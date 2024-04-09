@@ -33,7 +33,7 @@ function reclist_view(main_idx, location)
         $('#sub_frame_content_data1').append(aa);
 
         //내용넣기
-        get_recview_data("json/view_recview_data.html",location);           //메모
+        get_recview_data("json/view_recview_data.html?main_idx="+main_idx+"",location);           //녹취록 탐색 뷰 데이타 불러오기
 
 
     }
@@ -46,7 +46,7 @@ function reclist_view(main_idx, location)
         $('#sub_frame_content_data2').append(aa);
 
         //내용넣기
-        get_recview_data("json/view_recview_data.html",location);           //메모
+        get_recview_data("json/view_recview_data.html?main_idx="+main_idx+"",location);           //녹취록 탐색 뷰 데이타 불러오기
     }
 }
 
@@ -79,7 +79,7 @@ function reclist_view(main_idx, location)
 }
 */
 
-//녹취록탐색 리스트 데이터 불러오기
+//녹취록탐색 뷰 데이터 불러오기
 function get_recview_data(get_url, location)
 {
     $.ajax({
@@ -108,7 +108,7 @@ function get_recview_data(get_url, location)
             }
 
              var aa = '<div class="subject">'+subject+'</div>'
-                     +'<div class="recdate">녹음일자: '+from_date+' ~ '+to_date+' ('+rectime+')</div>'
+                     +'<div class="recdate">녹음일자: '+from_date+' ~ '+to_date+' ('+SecondToHis_hangul(rectime)+')</div>'
                      +'<div class="modrecdate">최종수정일자: '+from_date+' ~ '+to_date+'</div>'
                      +'<div class="recview_list"></div>';
 
@@ -159,20 +159,9 @@ function Add_recview_content(name, start_time, text, location)
     }
 
     var aa = '<div class="list">'
-                +'<div class="name">'+name+'</div><div class="start_time">'+start_time+'</div>'
+                +'<div class="name">'+name+'</div><div class="start_time">'+SecondToHis(start_time)+'</div>'
                 +'<div class="text">'+text+'</div>'
             +'</div>';
 
     $(selecter).append(aa);
-
-
-    //-------------타임메모 늘러날때 전체메모 늘어나게 하려고 했는데...잘안됨 보강해야함
-
-//        $('.chat_window .middle_content .sub_content .sub_frame #sub_frame_content_data1 .time_memo').on('scroll', function() {
-//            var time_memo_height = $(this).height();
-//            console.log("-------------height:" + time_memo_height);
-//            $('.chat_window .middle_content .sub_content .sub_frame #sub_frame_content_data1 .all_memo_tarea').height(time_memo_height);
-//        });
-
-
 }
