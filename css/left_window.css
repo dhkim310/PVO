@@ -7,7 +7,7 @@
     background-color: #ffffff;
     border-right: 1px solid #dedede;
     border-radius: 17px;
-    z-index: 999; /* 다른 요소들 위에 나타내기 */
+    z-index: 0; /* 다른 요소들 위에 나타내기 */
     overflow-y: auto;
 }
 /*

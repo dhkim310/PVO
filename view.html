@@ -90,6 +90,8 @@
     <script src="js/view/wavesurfer/wavesurfer.js"></script>                                        <!-- <script src="https://unpkg.com/wavesurfer.js"></script> -->
     <script src="js/view/wavesurfer/wavesurfer.markers.js"></script>                                <!-- <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.markers.js"></script> --> <!-- (참고: https://wavesurfer-js.org/plugins/markers.html) -->
 
+    <script src="js/view/speaker_get_show.js" type="text/javascript"></script>
+
 
 </head>
 
@@ -104,9 +106,9 @@
             <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">목록</div></div>
             <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">즐겨찾기</div></div>
             <div class="memu_sub_folder"><div class="memu_sub_img"><img src="img/leftmenu/home.png"></div><div class="memu_sub_txt">휴지통</div></div>
-            <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt" onclick="ViewMode_Chart_Record()">쓰기</div></div>
-            <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt" onclick="get_chatting_data_sample('', 'json/view_data.html?workid=A123456','')">추가</div></div>
-            <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt"  onclick="ViewMode_Chart_View()">보기</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt" onclick="location.href='view.html?mode=record'">쓰기</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt" onclick="get_chatting_data_sample('json/view_chat_data.html?main_idx=A123456')">추가</div></div>
+            <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt"  onclick="location.href='view.html?mode=view&idx=1234'">보기</div></div>
             <div class="memu_sub_folder"><div class="memu_sub_img"></div><div class="memu_sub_txt"  onclick="onChangeViewMode()">메신저</div></div>
         </div>
     </div>
@@ -117,11 +119,13 @@
         <div class="chat_window">
             <div class="top_menu">
                 <div class="subject">
-                    <div class="title">이보워 님 셋톱박스 설치 문의</div>
+                   <div class="title"></div><!-- 이보워 님 셋톱박스 설치 문의-->
+<!--
                     <div class="search"><input id="search" placeholder="검색문구 입력"></div>
                     <div class="icon"><img class="icon1" src="img/chat/1.png"><img class="icon1" src="img/chat/2.png"><img class="icon1" src="img/chat/3.png"></div>
+-->
                 </div>
-                <div class="ymdhis">녹음일자 2024년 1월 31일(수) 오후 2시 11분 8초</div>
+                <div class="ymdhis"></div><!--녹음일자 2024년 1월 31일(수) 오후 2시 11분 8초-->
 
                 <div class="bottom">
                     <!--
@@ -178,9 +182,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="bottom_wrapper">
+
                 <div id="waveform"></div>
                 <div id="waveform_btn">
+                    <!--
                     <div id="start_sec">00:00</div>
                     <div id="speed" onclick="change_audioRate()">1x</div>
                     <div id="prev"><img src="img/chat/prev.png" width="56px" onclick="WavBackward()"></div>
@@ -188,8 +195,11 @@
                     <div id="next"><img src="img/chat/next.png" width="56px" onclick="WavForward()"></div>
                     <div id="bookmark"><img src="img/chat/bookmark.png" width="56px" onclick="add_bookmark()"></div>
                     <div id="end_sec">03:46</div>
+                   -->
                 </div>
+
             </div>
+
         </div>
         <!-- (채팅화면) -->
 </div>
@@ -217,12 +227,12 @@
         </div>
         <div id="bt_option">
             <div id="sd_btn">
-                <input type="checkbox" id="checkbox1" checked>
-                <label for="checkbox1"><span></span></label>
+                <input type="checkbox" id="checkbox_sd" checked>
+                <label for="checkbox_sd"><span></span></label>
             </div>
             <div id="nr_btn">
-                <input type="checkbox" id="checkbox2">
-                <label for="checkbox2"><span></span></label>
+                <input type="checkbox" id="checkbox_nr">
+                <label for="checkbox_nr"><span></span></label>
             </div>
         </div>
         <div id="bt_mic"><img src="img/chat/fake_record_mic.png"  id="bt_mic_img" onclick="onFakeRecord()"></div>
@@ -255,8 +265,9 @@
         </div>
         <div id="bt_speed_image"><img src="img/chat/time-fast.png"></div>
         <div id="bt_speed_range">
-            <input type="range" min="1" max="100" value="50" class="slider" id="play_audioRate">
+           <input type="range" min="0.5" max="4" value="1" step="0.5" class="slider" id="play_audioRate">
         </div>
+        <span class="tooltiptext" id="play_audioRate_tooltip">1</span>
         <div id="btns">
             <div id="bt_prev30"><img src="img/chat/prev30.png" width="56px" onclick="WavBackward(-30)"></div>
             <div id="bt_prev5"><img src="img/chat/prev.png" width="56px" onclick="WavBackward(-5)"></div>
@@ -265,7 +276,14 @@
             <div id="bt_next30"><img src="img/chat/next30.png" width="56px"onclick="WavForward(30)"></div>
             <div id="bt_favorite"><img src="img/chat/bookmark.png" width="56px" onclick="add_bookmark()"></div>
         </div>
+
+<!--
+        <div id="bt_text_follow1" class="button-check" value="Download"><img src="img/chat/footsteps.png" width="15px">녹음 다운로드</div>
+        <div id="bt_text_follow2" class="button-check"><img src="img/chat/footsteps.png" width="15px"> 텍스트 다운로드</div>
+-->
+
         <div id="bt_text_follow" class="button-check" onclick="onFollowText()"><img src="img/chat/footsteps.png" width="15px"> 텍스트 따라가기</div>
+
     </div>
 </div>
 
@@ -294,6 +312,7 @@
 
 
 </body>
+
 
 
 </html>

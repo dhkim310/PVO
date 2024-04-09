@@ -1,5 +1,30 @@
 
 /*--------------------------------------------<하단 플레이시 버튼>-------------------------------------------------------------*/
+
+/*
+<div class="waveform_btn_template">
+    <div id="waveform_btn">
+        <div id="bt_speak_image"><img src="img/chat/speaker.png"></div>
+        <div id="bt_speak_vol">
+            <input type="range" min="1" max="100" value="50" class="slider" id="play_speaker_volumn">
+        </div>
+        <div id="bt_speed_image"><img src="img/chat/time-fast.png"></div>
+        <div id="bt_speed_range">
+            <input type="range" min="1" max="100" value="50" class="slider" id="play_audioRate">
+        </div>
+        <div id="btns">
+            <div id="bt_prev30"><img src="img/chat/prev30.png" width="56px" onclick="WavBackward(-30)"></div>
+            <div id="bt_prev5"><img src="img/chat/prev.png" width="56px" onclick="WavBackward(-5)"></div>
+            <div id="bt_play"><img src="img/chat/play.png" width="43px" id="id_btn_play" onclick="WavPlayPause()"></div>
+            <div id="bt_next5"><img src="img/chat/next.png" width="56px" onclick="WavForward(5)"></div>
+            <div id="bt_next30"><img src="img/chat/next30.png" width="56px"onclick="WavForward(30)"></div>
+            <div id="bt_favorite"><img src="img/chat/bookmark.png" width="56px" onclick="add_bookmark()"></div>
+        </div>
+        <div id="bt_text_follow" class="button-check" onclick="onFollowText()"><img src="img/chat/footsteps.png" width="15px"> 텍스트 따라가기</div>
+    </div>
+</div>
+*/
+
 /*하단 버튼들*/
 .chat_window .bottom_wrapper #waveform_btn{
     width: calc(100% - 34px);
@@ -34,18 +59,20 @@
     width: 80px;
 }
 
-/*타임 스피트 영역*/
+/*타임 스피드 영역*/
 .chat_window .bottom_wrapper #waveform_btn #bt_speed_image{
     display: inline-block;
     padding-left: 20px;
 }
 
-/*타임 스피트 이미지*/
+
+/*타임 스피드 이미지*/
 .chat_window .bottom_wrapper #waveform_btn #bt_speed_image img{
     width: 24px;
 }
 
-/*타임 스피트 슬라이더 영역*/
+
+/*타임 스피드 슬라이더 영역*/
 .chat_window .bottom_wrapper #waveform_btn #bt_speed_range{
     display: inline-block;
 
@@ -54,6 +81,34 @@
 
     width: 80px;
 }
+
+/*
+.chat_window .bottom_wrapper #waveform_btn #bt_speed_range .tooltip {
+    position: relative;
+    display: inline-block;
+}
+*/
+
+/*타임 스피드 슬라이더 조절시 툴팁 영역*/
+.chat_window .bottom_wrapper #waveform_btn .tooltiptext {
+    visibility: hidden;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+
+    z-index: 1;
+    display: inline-block;
+
+}
+
+.chat_window .bottom_wrapper #waveform_btn:hover .tooltiptext {
+    visibility: visible;
+}
+
+
 
 .chat_window .bottom_wrapper #waveform_btn #btns{
     display: inline-block;
@@ -106,6 +161,52 @@
 }
 
 .chat_window .bottom_wrapper #waveform_btn #bt_text_follow{
+    display: inline-block;
+    float: right;
+
+    margin-top: 10px;
+    margin-right: 10px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+
+    font-size: 13px;
+
+    border: 1px solid #000000;
+
+    border-top-right-radius: 12px 10px;                    /* x축 퍼센트 | y축 퍼센트 */
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #bt_text_follow1{
+    display: inline-block;
+    float: right;
+
+    margin-top: 10px;
+    margin-right: 10px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+
+    font-size: 13px;
+
+    border: 1px solid #000000;
+
+    border-top-right-radius: 12px 10px;                    /* x축 퍼센트 | y축 퍼센트 */
+    border-top-left-radius: 12px 10px;
+    border-bottom-left-radius: 12px 10px;
+    border-bottom-right-radius: 12px 10px;
+
+    cursor: pointer;
+}
+
+.chat_window .bottom_wrapper #waveform_btn #bt_text_follow2{
     display: inline-block;
     float: right;
 

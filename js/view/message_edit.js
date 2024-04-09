@@ -303,7 +303,7 @@ function ajax_submit_memo(main_idx, index, start_time, end_time){
                     //우측리스트에 메모를 추가한다.
                     //Add_memo_content(main_idx, index, start_time, end_time, memo_text);
                     //3.Ajax로 값을 불러와라
-                    get_memo_list_data(main_idx, "json/view_memo_data1.html?main_idx=main_idx");
+                    //get_memo_list_data(main_idx, "json/view_memo_data1.html?main_idx=main_idx");
 
                     //완료되면 팝업 메모를 닫는다.
                     $(".popup_memo").remove();
@@ -431,7 +431,7 @@ function change_profile()
 
 
     var url = "json/change_profile.html?main_idx="+id_profile_main_idx_val+"&index="+id_profile_index_val+"&speaker="+id_profile_speaker_val+"&nwhere="+radioValue+"&name="+id_profile_change_name_val;
-    var get_url = "json/view_data.html?workid="+id_profile_main_idx_val;
+    var get_url = "json/view_chat_data.html?main_idx="+id_profile_main_idx_val;
 
     console.log("change_profile() url:" + url);
 
@@ -451,7 +451,7 @@ function change_profile()
                 close_profile_form();
 
                 //대화내용을 다시 불러온다.
-                get_play_chatting_data(id_profile_main_idx_val, get_url);
+                get_play_chatting_data(get_url);
 
                 //그래프가 준비되면 몇초뒤에 스크롤 Value값을 불러온다
                 setTimeout(()=>Get_Messages_Scroll_value(), 1000);

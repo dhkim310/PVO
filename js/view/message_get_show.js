@@ -1,5 +1,5 @@
 //미팅,회의록 불러오기
-function get_play_chatting_data(main_idx, get_url, view_type)
+function get_play_chatting_data(get_url)
 {
     //모든 메모를 클리어
     $(".messages .message").each(function(){
@@ -42,6 +42,7 @@ function get_play_chatting_data(main_idx, get_url, view_type)
                 }
                 */
 
+                //메신저형태로 출력
                 if(global_msg_view_mode == "M")
                 {
                     if(speaker == "1")
@@ -207,6 +208,27 @@ function SecondToHis(seconds)
 }
 
 
+function SecondToHis_hangul(seconds)
+{
+    var hour, min, sec;
+
+    hour = parseInt(seconds/3600);
+    min = parseInt((seconds%3600)/60);
+    sec = seconds%60;
+
+    if (hour.toString().length==1) hour = "" + hour;
+    if (min.toString().length==1) min = "" + min;
+    if (sec.toString().length==1) sec = "" + sec;
+
+    if(hour > 0)
+    {
+        return hour + "시" + min + "분" + sec + "초";
+    }else{
+        return min + "분" + sec + "초";
+    }
+}
+
+
 
 
 
@@ -286,9 +308,73 @@ function Set_Messages_Scroll_bottom()
 
 
 
+//DB데이터 리플래시용
+function get_chatting_data(get_url)
+{
+    $.ajax({
+        url: get_url,
+        type: "GET",
+        dataType: "text",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        success: function (json)
+        {
+            var jsonObj = jQuery.parseJSON(json);
+            var listLen = jsonObj.view_datas.length;
 
+
+            if(0 < listLen)
+            {
+                num = listLen - 1;  //1이면 0
+
+                var main_idx    = jsonObj.view_datas[num].main_idx;
+                var index       = jsonObj.view_datas[num].index;
+                var speaker     = jsonObj.view_datas[num].speaker;
+                var name        = jsonObj.view_datas[num].name;
+                var start_time  = jsonObj.view_datas[num].start_time;
+                var end_time    = jsonObj.view_datas[num].end_time;
+                var memo_yn     = jsonObj.view_datas[num].memo_yn;
+                var bookmark_yn = jsonObj.view_datas[num].bookmark_yn;
+                var text        = jsonObj.view_datas[num].text;
+
+                if(global_msg_view_mode == "M")
+                {
+                    if(speaker == "1")
+                    {
+                        sendMessage(main_idx, index, speaker, name,  start_time,  end_time, memo_yn, bookmark_yn, text, 'left');
+                    }else{
+                        sendMessage(main_idx, index, speaker, name,  start_time,  end_time, memo_yn, bookmark_yn, text, 'right');
+                    }
+                }else{
+                    sendMessage(main_idx, index, speaker, name,  start_time,  end_time, memo_yn, bookmark_yn, text, '');
+                }
+
+
+                console.log(main_idx +","+ index +","+ speaker +","+ name +","+ start_time +","+ end_time +","+ memo_yn +","+ bookmark_yn +","+ text);
+
+            }
+
+        },
+
+        error: function (request, status, error)
+        {
+            console.log(error);
+            alert('죄송합니다. 서버 연결에 실패했습니다_1.');
+        }
+
+    });
+
+
+    //스크롤을 맨하단으로 이동
+    setTimeout(()=>Set_Messages_Scroll_bottom(), 300);
+}
+
+
+
+
+
+//테스트용
 var ee = 0;
-function get_chatting_data_sample(workid, get_url, view_type)
+function get_chatting_data_sample(get_url)
 {
     //모든 메모를 클리어
 //    $(".messages .message").each(function(){
