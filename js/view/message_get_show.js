@@ -1,3 +1,13 @@
+
+function chatting_clear()
+{
+    //모든 메세지를 클리어
+    $(".messages .message").each(function(){
+        $(this).remove();
+    });
+}
+
+
 //미팅,회의록 불러오기
 function get_play_chatting_data(get_url)
 {
