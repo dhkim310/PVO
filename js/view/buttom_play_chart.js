@@ -15,13 +15,13 @@ function create_wavesurfer(local_wave_file_name)
         waveColor: '#2284f5',        /* 커서 오른쪽 영역의 색상. 즉, 파형 중 재생되지 않은 부분의 색상 */
         progressColor: '#f76103',    /* 커서 왼쪽 영역의 색상. 즉, 파형 중 재생된 부분의 색상 */
         cursorColor: "OrangeRed",    /* 커서 색상 */
-        barWidth:1,                 /* 그래프 바 두께 */
+        barWidth:1,                  /* 그래프 바 두께 */
         //barRadius: 1,
         //responsive: true,
         //normalize: true,
         audioRate: 1,                /* 재생속도 */
         height:50,
-        barHeight: 1.3,
+        barHeight: 9.9,              /* 그래프 바 높이 */
         skipLength: 5,               /*skipForward(),skipBackward()시 이동(초) 설정 */
         backend: 'MediaElement',
         plugins: [
@@ -214,13 +214,22 @@ function create_wavesurfer(local_wave_file_name)
                 //한동안 흰색배경으로 바뀌지않게 고정
                 bSelect = true;
 
+                //-------<scroll_position의 index를 가져옴>------
+                var this_scroll_position_obj = $("input[id='start_time'][value='"+number+"']").parent().parent().next().next(); //data/profile/text_wrapper/scroll_posion
+                //this_scroll_position_obj의 값은 div.scroll_position임
+                //this_scroll_position_obj의 index정보를 스크롤위치값에 전달함
+                var this_scroll_position_index = $('.scroll_position').index(this_scroll_position_obj);
+
+                //console.log("tt:" + this_scroll_position_obj + "  bb:" + this_scroll_position_index);
+                //---------------------------------------------
+
                 //----------<선택좌표로 이동하기위해>---------
                 //선택된 좌표의 index값을 가져온다.
                 var select_index_val = $("input[id='start_time'][value='"+number+"']").prev().val();
                 global_select_index = select_index_val;     //값을 참고하기위해 전역화한다.
 
                 //배열에 저장된 값에서 index값 위치에있는 값을 적용한다.
-                var scroll_top = global_scroll_positon_arr[select_index_val]-350;
+                var scroll_top = global_scroll_positon_arr[this_scroll_position_index]-350;
 
                 //하단버튼의 "텍스트 따라가기" 체크시..
                 if(global_text_follow_Checked == true)
