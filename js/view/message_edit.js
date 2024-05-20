@@ -17,9 +17,22 @@ function Memu_pop(main_idx,index,start_time,end_time){
         //var add_pop_menu =   '<div class="popup_menu">'
          //                   +'<div'
         var add_pop_menu =   '<div class="popup_menu">'
-                                +'<div class="popup_menu_list"><div class="popup_menu_icon"><img src="img/chat/12.png"></div><div class="popup_menu_name" onclick="Text_modify('+index+')">음성기록 편집</div></div>'
-                                +'<div class="popup_menu_list"><div class="popup_menu_icon"><img src="img/chat/12.png"></div><div class="popup_menu_name" onclick="Add_memo_form(\''+main_idx+'\','+index+','+start_time+','+end_time+')">메모 추가</div></div>'
-                                +'<div class="popup_menu_list"><div class="popup_menu_icon"><img src="img/chat/12.png"></div><div class="popup_menu_name" onclick="Add_bookmark_form(\''+main_idx+'\','+index+','+start_time+','+end_time+')">북마크 추가</div></div>'
+                                +'<div class="popup_menu_list">'
+                                    +'<div class="popup_menu_icon"><img src="img/chat/12.png"></div>'
+                                    +'<div class="popup_menu_name" onclick="Text_modify('+index+')">음성기록 편집</div>'
+                                +'</div>'
+                                +'<div class="popup_menu_list">'
+                                    +'<div class="popup_menu_icon"><img src="img/chat/12.png"></div>'
+                                    +'<div class="popup_menu_name" onclick="Add_memo_form(\''+main_idx+'\','+index+','+start_time+','+end_time+')">메모 추가</div>'
+                                +'</div>'
+                                +'<div class="popup_menu_list">'
+                                    +'<div class="popup_menu_icon"><img src="img/chat/12.png"></div>'
+                                    +'<div class="popup_menu_name" onclick="Add_bookmark_form(\''+main_idx+'\','+index+','+start_time+','+end_time+')">북마크 추가</div>'
+                                +'</div>'
+                                +'<div class="popup_menu_list">'
+                                    +'<div class="popup_menu_icon"><img src="img/chat/12.png"></div>'
+                                    +'<div class="popup_menu_name" onclick="Del_this_Talk(\''+main_idx+'\','+index+')">현재 대화내용 삭제</div>'
+                                +'</div>'
                             +'</div>';
 
         //var top = arr[index]-150;
@@ -309,10 +322,17 @@ function ajax_submit_memo(main_idx, index, start_time, end_time){
                     $(".popup_memo").remove();
 
                     //-----대화창에 메모를 표시한다.
-                    var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next().next().next().next().next(".memo_yn");  //memo_yn
+                    //var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next().next().next().next().next(".memo_yn");  //memo_yn
+                    var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next(".memo_yn");  //memo_yn
                     $(selecter).html("메모");
 
                     console.log(selecter);
+
+                    //하단차트에 메모를 추가
+                    bottom_memo_point_insert(start_time, memo_text);
+
+                    //메모 및 북마크의 배경색을 바꾼다
+                    apply_wavesurfer_marker_color();
                 }
 
             },
@@ -395,7 +415,7 @@ function change_profile_form(main_idx, name, index, speaker)
     //var selecter = $("input[id='index'][value='"+index+"']").parent().parent().next().children(); //<--- text class
 
     var selecter = $("#id_name_" + index);
-    //선택자의 좌료를 읽음
+    //선택자의 좌표를 읽음
     var selecter_offset = $(selecter).offset();
 
     //팝업의 top좌표 적용
@@ -468,3 +488,216 @@ function change_profile()
 }
 
 
+
+//시간(초)을 클릭하면 시간(초)을 변경할수있는 팝업창이뜨고 시간(초)을 변경할수 있음   change_time("+_this.main_idx+","+_this.index+",end,"+_this.ed_time+")");
+function change_time(main_idx, index, where, time)
+{
+    //alert(main_idx + "," + name);
+    var tmpMinSecond = SecondToHis(time);        //80을 01:20으로
+    var arrSplitTime = tmpMinSecond.split(':');  //01:20 -> 01, 20으로 나눔
+
+    console.log(arrSplitTime[1]);
+
+    var add_pop_time    =   '<div class="popup_change_time">'
+                                +'<div class="popup_change_time_list">'
+                                    +'<div class="title">'
+                                        +'<div id="title_text">('+where+')초 변경</div>'
+                                        +'<div id="close" onclick="close_change_time_form()">X</div>'
+                                    +'</div>'
+                                    +'<div class="time">'
+                                        +'<div id="time_data">'
+                                             +'<input type="text" id="id_chage_time_minute" value="'+arrSplitTime[0]+'" maxlength="2">'
+                                             +'<span style="font-size:38px"> :</span>'
+                                             +'<input type="text" id="id_chage_time_second" value="'+arrSplitTime[1]+'" maxlength="2">'
+                                             +'<input type="text" id="id_chage_time_main_idx" value=\''+main_idx+'\' hidden>'
+                                             +'<input type="text" id="id_chage_time_index" value="'+index+'" hidden>'
+                                             +'<input type="text" id="id_chage_time_where" value="'+where+'" hidden>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="button">'
+                                    +'<div id="save_btn" onclick="modify_change_time()">변경</div>'
+                                +'</div>'
+                            +'</div>';
+
+    $('body').append(add_pop_time);
+
+
+
+    //클릭한 영역의 text class를 읽어서
+    //var selecter = $("input[id='index'][value='"+index+"']").parent().parent().next().children(); //<--- text class
+
+    var selecter = $("#id_name_" + index);
+    //선택자의 좌표를 읽음
+    var selecter_offset = $(selecter).offset();
+
+    //팝업의 top좌표 적용
+    $(".popup_change_time").css("top",selecter_offset.top);
+    $(".popup_change_time").css("left",selecter_offset.left);
+
+    //"분" 입력값이 조건에 부합하는지 검사합니다. 조건에 부합하지 않는 입력값은 자동으로 초기값으로 변경되며, 사용자에게 알림이 표시됩니다.
+    $('#id_chage_time_minute').on('input', function() {
+        var value = $(this).val();
+
+        // 숫자만 입력되었는지 확인
+        var isNumeric = /^\d+$/.test(value);
+
+        // 입력값이 숫자가 아니거나 범위를 벗어나면
+        if (!isNumeric || value < 0 || value > 60)
+        {
+          alert('00부터 60까지의 숫자만 입력해주세요.');
+          $(this).val(arrSplitTime[0]); //초기값으로 변경합니다.
+
+        } else if (value.length > 2) {
+          // 입력값이 두 자리를 초과하면 초과분을 자릅니다.
+          $(this).val(value.slice(0, 2));
+        }
+    });
+
+    //"초" 입력값이 조건에 부합하는지 검사합니다. 조건에 부합하지 않는 입력값은 초기값으로 변경되며, 사용자에게 알림이 표시됩니다.
+    $('#id_chage_time_second').on('input', function() {
+        var value = $(this).val();
+
+        // 숫자만 입력되었는지 확인
+        var isNumeric = /^\d+$/.test(value);
+
+        // 입력값이 숫자가 아니거나 범위를 벗어나면
+        if (!isNumeric || value < 0 || value > 60)
+        {
+          alert('00부터 60까지의 숫자만 입력해주세요.');
+          $(this).val(arrSplitTime[1]); //초기값으로 변경합니다.
+        } else if (value.length > 2) {
+          // 입력값이 두 자리를 초과하면 초과분을 자릅니다.
+          $(this).val(value.slice(0, 2));
+        }
+    });
+}
+
+
+//이름변경팝업 프로필 메뉴를 닫는다.
+function close_change_time_form()
+{
+    $(".popup_change_time").remove();
+}
+
+//"01:20" -> 80
+function SecondsToTimeString(timeString) {
+    // 시간 문자열을 분과 초로 분리
+    var parts = timeString.split(':');
+    var minutes = parseInt(parts[0], 10);
+    var seconds = parseInt(parts[1], 10);
+
+    // 전체 시간을 초로 변환
+    var totalSeconds = minutes * 60 + seconds;
+
+    return totalSeconds;
+}
+
+//팝업된 프로필을 저장한다.
+function modify_change_time()
+{
+    var id_chage_time_main_idx_val  = $("#id_chage_time_main_idx").val();
+    var id_chage_time_index_val     = $("#id_chage_time_index").val();
+
+    var id_chage_time_minute_val    = $("#id_chage_time_minute").val();
+    var id_chage_time_second_val    = $("#id_chage_time_second").val();
+    var id_chage_time_where_val     = $("#id_chage_time_where").val();
+
+    var totalSecond = SecondsToTimeString(id_chage_time_minute_val + ":" + id_chage_time_second_val);
+
+    console.log("id_chage_time_main_idx_val:" + id_chage_time_main_idx_val);
+    console.log("id_chage_time_index_val:" + id_chage_time_index_val);
+
+    console.log("id_chage_time_minute_val:" + id_chage_time_minute_val);
+    console.log("id_chage_time_second_val:" + id_chage_time_second_val);
+    console.log("DB초:" + totalSecond);
+
+    console.log("id_chage_time_where_val:" + id_chage_time_where_val);
+
+
+
+    var url = "json/change_second.html?main_idx="+id_chage_time_main_idx_val+"&index="+id_chage_time_index_val+"&nwhere="+id_chage_time_where_val+"&second="+totalSecond;
+    var get_url = "json/view_chat_data.html?main_idx="+id_chage_time_main_idx_val;
+
+    console.log("change_profile() url:" + url);
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "text",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        success: function (json)
+        {
+            var jsonObj = jQuery.parseJSON(json);
+            console.log(jsonObj);
+
+            if(jsonObj.state == "Y")
+            {
+                //초 수정 메뉴를 닫는다.
+                close_change_time_form();
+
+                //대화내용을 다시 불러온다.
+                get_play_chatting_data(get_url);
+
+                //그래프가 준비되면 몇초뒤에 스크롤 Value값을 불러온다
+                setTimeout(()=>Get_Messages_Scroll_value(), 1000);
+            }
+
+        },
+
+        error: function (request, status, error)
+        {
+            console.log(error);
+            alert('죄송합니다. 서버 연결에 실패했습니다_4.');
+        }
+    });
+}
+
+
+function Del_this_Talk(main_idx, index)
+{
+    if(confirm("현재 대화내용을 삭제하시겠습니까?"))
+    {
+        var url = "json/delete_content.html?main_idx="+main_idx+"&index="+index;
+        var get_url = "json/view_chat_data.html?main_idx="+main_idx;
+
+        console.log("change_profile() url:" + url);
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "text",
+            contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (json)
+            {
+                var jsonObj = jQuery.parseJSON(json);
+                console.log(jsonObj);
+
+                if(jsonObj.state == "Y")
+                {
+                    alert("현재의 대화내용을 삭제하였습니다.");
+
+                    //팝업 메뉴를 닫는다.
+                    $(".popup_menu").remove();
+
+                    //대화내용을 다시 불러온다.
+                    get_play_chatting_data(get_url);
+
+                    //그래프가 준비되면 몇초뒤에 스크롤 Value값을 불러온다
+                    setTimeout(()=>Get_Messages_Scroll_value(), 1000);
+                }
+
+            },
+
+            error: function (request, status, error)
+            {
+                console.log(error);
+                alert('죄송합니다. 서버 연결에 실패했습니다_4.');
+            }
+        });
+
+    }else{
+        $(".popup_menu").remove();
+        return;
+    }
+}

@@ -49,7 +49,7 @@ function show_memo(location, main_idx)
         $('#sub_frame_content_data1').append(aa);
 
         //내용넣기
-        get_memo_list_data("json/view_memo_data.html?main_idx=main_idx",location);           //메모
+        get_memo_list_data("json/view_memo_data.html?main_idx=" + main_idx,location);           //메모
 
 
     }
@@ -67,7 +67,7 @@ function show_memo(location, main_idx)
         $('#sub_frame_content_data2').append(aa);
 
         //내용넣기
-        get_memo_list_data("json/view_memo_data.html?main_idx=main_idx",location);           //메모
+        get_memo_list_data("json/view_memo_data.html?main_idx=" + main_idx,location);           //메모
     }
 }
 
@@ -114,6 +114,9 @@ function get_memo_list_data(get_url, location)
                 console.log(main_idx +","+ index +","+ start_time +","+ end_time +","+ memo +","+ location);
             }
 
+            //메모 및 북마크의 배경색을 바꾼다
+            apply_wavesurfer_marker_color();
+
         },
 
         error: function (request, status, error)
@@ -132,7 +135,7 @@ function Add_memo_content(main_idx, index, start_time, end_time, memo_text, loca
     if(global_view_state == "V")
     {
         //하단그래프에 메모시점을 추가한다.
-        bottom_memo_point_insert(start_time, "");
+        bottom_memo_point_insert(start_time, memo_text);
     }
 
     //var selecter = $(".middle_content").next(".memo").next().children();           //
@@ -156,7 +159,7 @@ function Add_memo_content(main_idx, index, start_time, end_time, memo_text, loca
                                 +'<div class="memo_set" id="id_memo_set_'+index+'">'
                                                     +'<div class="memo_second">'+SecondToHis(start_time)+'</div>'
                                                     +'<div class="memo_mod" onclick="memo_modify(\''+main_idx+'\','+index+','+start_time+','+end_time+',\''+memo_text+'\','+location+')">수정</div>'
-                                                    +'<div class="memo_del" onclick="ajax_memo_delete(\''+main_idx+'\','+index+','+start_time+','+end_time+',\''+memo_text+'\')">삭제</div>'
+                                                    +'<div class="memo_del" onclick="ajax_memo_delete(\''+main_idx+'\','+index+','+start_time+','+end_time+',\''+memo_text+'\','+location+')">삭제</div>'
                                                     +'<div class="memo_data">'
                                                             +'<input type="text" id="start_time_memo" value="'+start_time+'">'
                                                             +'<input type="text" id="end_time_memo" value="'+end_time+'">'
@@ -179,7 +182,7 @@ function Add_memo_content(main_idx, index, start_time, end_time, memo_text, loca
 }
 
 
-function ajax_memo_delete(main_idx, index, start_time, end_time, memo_text){
+function ajax_memo_delete(main_idx, index, start_time, end_time, memo_text, location){
     //alert('메모삭제:id('+main_idx+') index:('+index+')');
 
     if (confirm("선택하신 메모를 삭제하시겠습니까?"))
@@ -187,7 +190,7 @@ function ajax_memo_delete(main_idx, index, start_time, end_time, memo_text){
         //예를 클릭한경우
 
         //-----대화창에 메모를 삭제한다.
-        var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next().next().next().next().next(".memo_yn");  //memo_yn
+        var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next(".memo_yn");  //memo_yn
         $(selecter).html("");
 
 
@@ -208,8 +211,14 @@ function ajax_memo_delete(main_idx, index, start_time, end_time, memo_text){
                 {
                     //--Ajax성공할경우 아래작업 수행---
 
-                    //하단 그래프에 메모 시점을 다시불러온다
-                    bottom_memo_point_reload(main_idx);
+                    // Removes all markers.
+                    wavesurfer.clearMarkers();
+
+                    //메모리스트를 다시 불러온다.
+                    get_memo_list_data("json/view_memo_data.html?main_idx=" + main_idx, location);
+
+                    //하단 그래프에 북마크 시점을 다시불러온다
+                    bottom_bookmark_point_reload(main_idx);
 
                     console.log(selecter);
 
@@ -249,25 +258,47 @@ function bottom_memo_point_insert(second, message)
 }
 
 
-//메모삭제시 메모를 다시 불러온다
-function bottom_memo_point_reload(workid)
+//메모삭제시 Ajax를 통해 하단 그래프 하단차트에 북마크 시점을 다시 불러온다
+function bottom_memo_point_reload(main_idx)
 {
-    // Removes all markers.
-    wavesurfer.clearMarkers();
-
-    // 메모들을 다지운다. 아래에서 다시 불러온다.
-    $(".memo_list").html("");
-
 
     //<Ajax를 통해 하단 그래프에 메모 시점을 다시불러온다>
-    //get_memo_list_data(main_idx, "json/view_memo_data.html?workid="+workid);
+    var get_url = "json/view_memo_data.html?main_idx=" + main_idx;
 
-    /*
-    //DB의 메모정보
-    Add_memo_content("A123456",0,5,9, "aaaaaaaaaa");
-    Add_memo_content("A123456",1,10,15, "bbbbbbbbbb");
-    Add_memo_content("A123456",2,17,20, "ccccccccccc");
-    */
-    //</Ajax를 통해 하단 그래프에 메모 시점을 다시불러온다>
+    $.ajax({
+        url: get_url,
+        type: "GET",
+        dataType: "text",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        success: function (json)
+        {
+            var jsonObj = jQuery.parseJSON(json);
+            var listLen = jsonObj.view_memo_datas.length;
+
+
+            for(var i=0; i<listLen; i++)
+            {
+                var start_time = jsonObj.view_memo_datas[i].start_time;
+                var memo       = jsonObj.view_memo_datas[i].memo;
+
+                //하단그래프에 메모시점을 추가한다.
+                bottom_memo_point_insert(start_time, memo);
+            }
+
+            //메모 및 북마크의 배경색을 바꾼다
+            apply_wavesurfer_marker_color();
+
+        },
+
+        error: function (request, status, error)
+        {
+            console.log(error);
+            alert('죄송합니다. 서버 연결에 실패했습니다_2.');
+        }
+
+    });
+
+    //</메모삭제시 Ajax를 통해 하단 그래프 하단차트에 북마크 시점을 다시 불러온다>
 }
+
 //--------------------------</우측 서브메뉴(메모)>---------------------------------------

@@ -28,3 +28,4 @@ var analyser;
 var stream;
 //-----</레코드시 차트 그리기위한 변수>-----
 
+var global_wave_sound_mode = "SPILT";

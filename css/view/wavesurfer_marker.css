@@ -1,0 +1,21 @@
+
+
+/* 마커 내부의 텍스트를 기본적으로 숨깁니다. */
+.wavesurfer-marker span {
+    display: none;
+    font-family: 'Arial', sans-serif;
+    font-size: 7px;
+    color: #ffffff;
+    background-color: #1699f8;
+    border: 1px solid #000000;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    margin-top: 0px;
+    z-index: 5;
+}
+
+/* 마우스를 마커 위에 올렸을 때 텍스트를 표시합니다. */
+.wavesurfer-marker:hover span {
+    display: inline;
+}

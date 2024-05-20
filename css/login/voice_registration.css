@@ -1,3 +1,28 @@
+
+
+/*
+<div id="whole">
+    <div class="registration_window">
+        <div class="pv_logo"></div>
+        <div class="registration">
+            <span class="guide_text_1">아래 문구를 소리내어 읽어주세요.</span>
+            <span class="guide_text_2">“내 목소리로 인증”</span>
+            <div class="micbox-button">
+                <div id="micbox">
+                    <div id="circle1">
+                        <div id="circle2"></div>
+                        <div id="circle3"></div>
+                    </div>
+                </div>
+            </div>
+            <span class="guide_text_3">소리가 너무 커요! or 소리가 너무 작아요!</span>
+            <button class="voice_registration_btn">목소리 등록</button>
+        </div>
+    </div>
+</div>
+*/
+
+
 * {
     box-sizing: border-box;
 }
@@ -7,23 +32,22 @@ body {
 }
 
 .whole {
-    width: 100%;
+
     height: 1080px;
     background: rgba(255, 255, 255, 1);
-    opacity: 1;
     position: relative;
     transform: translateY(-50%);
     top: 0px;
     left: 0px;
+    overflow: hidden;
 }
 
 #whole .registration_window {
-    width: 1000px;
-    height: 800px;
+    width: 850px;
+    height: 700px;
     background: rgba(255, 255, 255, 1);
     padding: 25px 23px;
     margin: auto;
-    opacity: 1;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -35,25 +59,34 @@ body {
 
 /* 회사 로고 */
 .pv_logo {
+    display: block;
     width: 240px;
     height: 98px;
-    background: url("../img/PV_Logo.png") no-repeat center center;
+    background: url("../../img/PV_Logo.png") no-repeat center center;
     background-size: cover;
-    opacity: 1;
-    position: absolute;
+
+/*    position: absolute;*/
+/*
     top: 60px;
     left: 400px;
     overflow: hidden;
+*/
+    margin-top: 20px;
+    margin-left: 300px;
 }
 
 #whole .registration_window .registration {
+    display: block;
     width: 800px;
     height: 500px;
+    margin-top: 25px;
     background: rgba(249, 249, 249, 1);
-    opacity: 1;
+
+/*
     position: absolute;
     top: 230px;
     left: 105px;
+*/
     border-radius: 40px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     overflow: hidden;
@@ -61,40 +94,36 @@ body {
 
 /* 안내 문구 */
 .guide_text_1 {
-    width: 773px;
+    display: block;
+    margin-top: 10px;
+
     color: rgba(0, 0, 0, 1);
+/*
     position: absolute;
     top: 200px;
     left: 120px;
+*/
     font-family: Inter;
     font-size: 24px;
-    opacity: 1;
+
     text-align: center;
 }
 
 .guide_text_2 {
-    width: 773px;
+    display: block;
+    margin-top: 20px;
     color: rgba(0, 0, 0, 1);
+/*
     position: absolute;
     top: 25px;
     left: 15px;
+*/
     font-family: Inter;
     font-size: 55px;
-    opacity: 1;
+
     text-align: center;
 }
 
-.guide_text_3 {
-    width: 720px;
-    color: rgba(255, 0, 0, 1);
-    position: absolute;
-    top: 380px;
-    left: 40px;
-    font-family: Inter;
-    font-size: 25px;
-    opacity: 1;
-    text-align: center;
-}
 
 /* MIC */
 
@@ -102,7 +131,7 @@ body {
     width: 800px;
     height: 260px;
     position: relative;
-    top: 100px;
+/*    top: 10px;*/
 }
 
 #whole .registration_window .registration .micbox-button #micbox #circle1 {
@@ -136,7 +165,7 @@ body {
     border-radius: 50%;
     border: 5px solid black;
     background-color: #fff;
-    background-image: url('../img/mic.png');
+    background-image: url('../../img/mic.png');
     background-repeat: no-repeat;
     background-size: 85%;
     background-position: center;
@@ -146,10 +175,31 @@ body {
     transform: translate(-50%, -50%);
 }
 
+
+.guide_text_3 {
+    display: block;
+    margin-top: -18px;
+    color: rgba(255, 0, 0, 1);
+/*
+    position: absolute;
+    top: 380px;
+    left: 40px;
+*/
+    font-family: Inter;
+    font-size: 25px;
+
+    text-align: center;
+}
+
+
 /* 목소리 등록 버튼 */
 #whole .registration_window .registration .voice_registration_btn {
+    display: block;
     width: 360px;
-    height: 75px;
+    height: 60px;
+
+    margin-left: 220px;
+    margin-top: 10px;
     background: rgba(104, 218, 214, 1);
     color: rgba(255, 255, 255, 1);
     font-family: Inter;
@@ -159,10 +209,12 @@ body {
     border-radius: 10px;
     cursor: pointer;
     outline: none;
+/*
     position: absolute;
     top: 420px;
     left: 220px;
-    opacity: 1;
+*/
+
     text-align: center;
 }
 

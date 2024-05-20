@@ -161,3 +161,22 @@ record_btn_template{
     font-size: 14px;
 }
 
+
+/*검색 - 봉나례*/
+#searchWord{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+#searchWord ul{
+	position: fixed;
+	z-index: 1;
+	background: white;
+	border: 1px solid grey;
+	width: 350px;
+	list-style: auto;
+	text-align: start;
+	padding-right: 30px;
+}
+
