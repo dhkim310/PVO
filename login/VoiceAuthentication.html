@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
     <link href="../css/login/voice_authentication.css" rel="stylesheet"/>
 
-    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/view/default/jquery.js" type="text/javascript"></script>
     <script src="../js/recorder.js"></script>
     <script src="../js/login.js"></script>
     <title>Document</title></head>
@@ -27,15 +27,17 @@
 
 <body>
 <div class="whole">
+    <div class="pv_logo"></div>
     <div class="authentication_window">
-        <div class="pv_logo"></div>
         <div class="authentication">
             <span class="guide_text_1">아래 문구를 소리내어 읽어주세요.</span>
             <span class="guide_text_2">“내 목소리로 인증”</span>
-            <div class="parse_pending border" style="margin-top: 40px;">
-                <div class="progress-bar success">
-                    <span class="progress-text">0%</span>
-                </div>
+        </div>
+        <div class="parse_pending border">
+            <span class="progress-text1">잘 하고 계세요!</span>
+            <span class="progress-text">50%</span>
+            <span class="progress-text2">거의 다 왔어요!</span>
+            <div class="progress-bar success">
             </div>
         </div>
     </div>

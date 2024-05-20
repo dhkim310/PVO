@@ -8,20 +8,38 @@ function create_wavesurfer(local_wave_file_name)
         wavesurfer = null;
     }
 
+    global_wave_sound_mode = "SPILT";
 
     /*--------<wavesurfer>---------*/
     wavesurfer = WaveSurfer.create({
         container: '#waveform',
-        waveColor: '#2284f5',        /* 커서 오른쪽 영역의 색상. 즉, 파형 중 재생되지 않은 부분의 색상 */
-        progressColor: '#f76103',    /* 커서 왼쪽 영역의 색상. 즉, 파형 중 재생된 부분의 색상 */
-        cursorColor: "OrangeRed",    /* 커서 색상 */
+        splitChannels: true,
+        splitChannelsOptions: {
+            overlay: false,
+            channelColors: {
+                0: {
+                    progressColor: '#fcbf4c', // 여기에 원하는 색상 코드 입력
+                    waveColor: 'OrangeRed'
+                },
+                1: {
+                    progressColor: '#15d7f0', // 여기에 원하는 색상 코드 입력
+                    waveColor: '#2284f5'
+                }
+            }
+        },
+        //overlay: false,
+        //waveColor: '#2284f5',        /* 커서 오른쪽 영역의 색상. 즉, 파형 중 재생되지 않은 부분의 색상 */
+        //progressColor: '#f76103',    /* 커서 왼쪽 영역의 색상. 즉, 파형 중 재생된 부분의 색상 */
+
+        //cursorColor: "OrangeRed",    /* 커서 색상 */
         barWidth:1,                  /* 그래프 바 두께 */
         //barRadius: 1,
         //responsive: true,
         //normalize: true,
         audioRate: 1,                /* 재생속도 */
-        height:50,
-        barHeight: 9.9,              /* 그래프 바 높이 */
+        height:40,
+        barHeight: 7.0,              /* 그래프 바 높이 */
+        normalize: true,
         skipLength: 5,               /*skipForward(),skipBackward()시 이동(초) 설정 */
         backend: 'MediaElement',
         plugins: [
@@ -74,6 +92,16 @@ function create_wavesurfer(local_wave_file_name)
         waveColor	    string	#999	커서 오른쪽 영역의 색상. 즉, 파형 중 재생되지 않은 부분의 색상
         */
     });
+
+
+
+    // change channel 0 progress color
+    //wavesurfer.setProgressColor('red', 0);
+
+    // change channel 1 wave color
+    // get channel 0 progress color
+
+    //wavesurfer.getProgressColor(0);
 
     wavesurfer.on('error', function (e) {
         console.warn("wavesurfer_error:" + e);
@@ -214,6 +242,12 @@ function create_wavesurfer(local_wave_file_name)
                 //한동안 흰색배경으로 바뀌지않게 고정
                 bSelect = true;
 
+                //----------<선택좌표로 이동하기위해>---------
+                //선택된 좌표의 index값을 가져온다.
+                var select_index_val = $("input[id='start_time'][value='"+number+"']").prev().val();
+                global_select_index = select_index_val;     //값을 참고하기위해 전역화한다.
+
+
                 //-------<scroll_position의 index를 가져옴>------
                 var this_scroll_position_obj = $("input[id='start_time'][value='"+number+"']").parent().parent().next().next(); //data/profile/text_wrapper/scroll_posion
                 //this_scroll_position_obj의 값은 div.scroll_position임
@@ -223,13 +257,10 @@ function create_wavesurfer(local_wave_file_name)
                 //console.log("tt:" + this_scroll_position_obj + "  bb:" + this_scroll_position_index);
                 //---------------------------------------------
 
-                //----------<선택좌표로 이동하기위해>---------
-                //선택된 좌표의 index값을 가져온다.
-                var select_index_val = $("input[id='start_time'][value='"+number+"']").prev().val();
-                global_select_index = select_index_val;     //값을 참고하기위해 전역화한다.
 
                 //배열에 저장된 값에서 index값 위치에있는 값을 적용한다.
                 var scroll_top = global_scroll_positon_arr[this_scroll_position_index]-350;
+                console.log("select_index_val:" + select_index_val + "   scroll_top" + scroll_top);
 
                 //하단버튼의 "텍스트 따라가기" 체크시..
                 if(global_text_follow_Checked == true)
@@ -283,6 +314,107 @@ function create_wavesurfer(local_wave_file_name)
 }
 //--------------------------</WaveSurfer>-------------------------------------
 
+function updateWaveSurferSettings(){
+
+    if(global_wave_sound_mode == "SPILT")
+    {
+        global_wave_sound_mode = "MERGE";
+        updateWaveSurferSettings_Merge();
+
+        $("#bt_wave_sound").empty();
+        $("#bt_wave_sound").append("<img src='img/chat/wave_sound.png' width='22px'>");
+    }else{
+
+        global_wave_sound_mode = "SPILT";
+        updateWaveSurferSettings_Spilt();
+
+        $("#bt_wave_sound").empty();
+        $("#bt_wave_sound").append("<img src='img/chat/wave_sound.png' width='22px'>");
+    }
+}
+
+// 설정을 변경하고 wavesurfer 인스턴스를 재적용하는 함수
+function updateWaveSurferSettings_Merge() {
+    if (wavesurfer != null) {
+        // splitChannels, splitChannelsOptions, height 값 변경
+        wavesurfer.params.splitChannels = true;
+        wavesurfer.params.height = 80;
+
+        wavesurfer.params.splitChannelsOptions.overlay = true;
+
+        // channelColors의 progressColor 색상 변경
+        wavesurfer.params.splitChannelsOptions.channelColors = {
+            0: {
+                progressColor: '#fcbf4c', // 여기에 원하는 색상 코드 입력
+                waveColor: 'OrangeRed'
+            },
+            1: {
+                progressColor: '#15d7f0', // 여기에 원하는 색상 코드 입력
+                waveColor: '#2284f5'
+            }
+        };
+
+        // 변경사항 적용을 위해 wavesurfer를 다시 로드합니다.
+        wavesurfer.empty();
+        wavesurfer.drawBuffer();
+    }
+}
+
+// 설정을 변경하고 wavesurfer 인스턴스를 재적용하는 함수
+function updateWaveSurferSettings_Spilt() {
+    if (wavesurfer != null) {
+        // splitChannels, splitChannelsOptions, height 값 변경
+        wavesurfer.params.splitChannels = true;
+        wavesurfer.params.height = 40;
+
+        wavesurfer.params.splitChannelsOptions.overlay = false;
+
+        // channelColors의 progressColor 색상 변경
+        wavesurfer.params.splitChannelsOptions.channelColors = {
+            0: {
+                progressColor: '#fcbf4c', // 여기에 원하는 색상 코드 입력
+                waveColor: 'OrangeRed'
+            },
+            1: {
+                progressColor: '#15d7f0', // 여기에 원하는 색상 코드 입력
+                waveColor: '#2284f5'
+            }
+        };
+
+        // 변경사항 적용을 위해 wavesurfer를 다시 로드합니다.
+        wavesurfer.empty();
+        wavesurfer.drawBuffer();
+    }
+}
+
+
+//봉나례
+$(document).ready(function() {
+    // 검색 결과에 대한 클릭 이벤트 핸들러 설정
+    $('#searchWord ul').on('click', 'li', function() {
+        let selectedId = $(this).attr('id'); // 클릭된 li의 id 가져오기
+        console.log("선택한 검색어 id : " + selectedId);
+
+        // 여러 개의 text 요소 중에서도 동일한 id를 가진 요소의 배경색 변경
+        $('.text_wrapper').find('[id="' + selectedId + '"]').css('background-color', 'yellow');
+        // .text_wrapper 내에서 동일한 id를 가진 마지막 요소의 높이 구하기
+
+        //스크롤이동 //scroll_position
+        var this_scroll_position_obj = $('.text_wrapper').find('[id="' + selectedId + '"]').parent().next();
+        var this_scroll_position_index = $('.scroll_position').index(this_scroll_position_obj);
+        var scroll_top = global_scroll_positon_arr[this_scroll_position_index]-350;
+        $('.messages').animate({scrollTop : scroll_top}, 500);
+
+        let $startEle = $(this).find("span:nth-child(2)");
+        let $endEle = $(this).find("span:nth-child(3)");
+
+        let startTime = $startEle.data("time"); //dataset
+        let endTime = $endEle.data("time"); //dataset
+
+        WavPlay_range(startTime,endTime);
+    });
+});
+
 
 function get_playchart_memo_data(get_url)
 {
@@ -306,7 +438,7 @@ function get_playchart_memo_data(get_url)
 
 
                 //하단그래프에 메모시점을 추가한다.
-                bottom_memo_point_insert(start_time, "");
+                bottom_memo_point_insert(start_time, memo);
 
                 console.log(main_idx +","+ index +","+ start_time +","+ end_time +","+ memo +","+ location);
             }
@@ -343,9 +475,10 @@ function get_playchart_bookmark_data(get_url)
                 var index      = jsonObj.view_bookmark_datas[i].index;
                 var start_time = jsonObj.view_bookmark_datas[i].start_time;
                 var end_time   = jsonObj.view_bookmark_datas[i].end_time;
+                var contents   = jsonObj.view_bookmark_datas[i].contents;
 
                 //Add_memo_content(main_idx, index, start_time,  end_time);
-                bottom_bookmark_point_insert(start_time, "");
+                bottom_bookmark_point_insert(start_time, contents);
 
                 console.log(main_idx +","+ index +","+ start_time +","+ end_time);
             }

@@ -164,10 +164,19 @@ function ajax_submit_bookmark(main_idx, index, start_time, end_time)
             if(jsonObj.state == "Y")
             {
                 //--Ajax성공할경우 아래작업 수행---
-                bottom_bookmark_point_insert(start_time, "");
+
+                var selecter = '#' + index;
+                var text = $(selecter).text();
+                console.log("bookmark_text:" + text);
+
+                //하단차트에 북마크시점을 표시
+                bottom_bookmark_point_insert(start_time, text);
+
+                //메모 및 북마크의 배경색을 바꾼다
+                apply_wavesurfer_marker_color();
 
                 //-----대화창에 메모를 표시한다.
-                var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next().next().next().next().next(".bookmark_yn");  //memo_yn
+                var selecter = $("input[id='start_time'][value='"+start_time+"']").parent().parent().children().next().next().next().next().next(".bookmark_yn");  //bookmark_yn
                 $(selecter).html("북마크");
 
                 console.log(selecter);

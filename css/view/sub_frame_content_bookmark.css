@@ -1,0 +1,57 @@
+
+
+/*메모틀*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark{
+    display:block;
+}
+
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark .bookmark_set{
+
+}
+
+/*시작초*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark .bookmark_set .bookmark_second{
+    display:inline-block;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #c7c7c7;
+}
+
+
+/*삭제*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark .bookmark_set .bookmark_del{
+    display:inline-block;
+
+    margin-left: 10px;
+
+    font-size: 11px;
+    font-family: "굴림";
+    color: #c7c7c7;
+
+    cursor: pointer;
+}
+
+/*메모(숨겨진값)*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark .bookmark_set .bookmark_data{
+    display:inline-block;
+}
+
+/*메모(숨겨진값)*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark .bookmark_set .bookmark_data input[type=text]{
+    width: 35px;
+    height: 20px;
+
+    display: none;
+}
+
+/*메모 내용*/
+.chat_window .middle_content .sub_content .sub_frame .sub_frame_content .all_bookmark .bookmark_content{
+    font-size: 13px;
+    font-family: "굴림";
+    color: #000000;
+
+    cursor: pointer;
+}
+
+

@@ -80,9 +80,12 @@ async function ViewMode_Chart_Record()
 //기록뷰중 하단 차트 및 버튼 보이기
 async function ViewMode_Chart_View(main_idx)
 {
+    /*
     $('.messages').css("height","calc(100% - 195px)");  //175,225
     $('.sub_content').css("height","calc(100% - 185px)");  //215
-
+    */
+    $('.messages').css("height","calc(100% - 235px)");  //265
+    $('.sub_content').css("height","calc(100% - 225px)");  //255
 
 
     //-------------------------------DB에서 값을 불러올것------------------------------------
@@ -103,15 +106,62 @@ async function ViewMode_Chart_View(main_idx)
 */
 
     //---제목---
-    selecter = $(".contents .chat_window .top_menu .subject .title");
-    $(selecter).empty();
-    $(selecter).append(jsonObj.subject);
+    var selecter_subject = $(".contents .chat_window .top_menu .subject .title");
+    $(selecter_subject).empty();
+    $(selecter_subject).append(jsonObj.subject);
 
+    //---<제목수정>----
+    //제목을 수정하고 싶은경우...제목을 클릭하면 입력상자로 바뀌고..enter키를 누르면 저장된다.
+    $(selecter_subject).on('click', function() {
+        $(selecter_subject).empty();
+        $(selecter_subject).append("<input type='text' value='"+jsonObj.subject+"' id='subject_input' >");
+
+        // 새로 추가된 입력에 초점을 맞추고 커서를 끝까지 이동합니다
+        $('#subject_input').focus().val('').val(jsonObj.subject);
+
+        //입력창인 subject_input에서 Enter 키의 누르면...(keyCode는 13)
+        $('#subject_input').keypress(function(event) {
+
+
+
+            if (event.keyCode === 13) {
+                // AJAX 요청을 보내기 전에 입력 필드의 데이터를 변수에 저장합니다.
+                var inputData = $(this).val();
+
+                var url = "json/change_subject.html?main_idx="+main_idx+"subject="+inputData;
+
+                // AJAX 요청을 보냅니다.
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "text",
+                    contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function (json)
+                    {
+                        var jsonObj = jQuery.parseJSON(json);
+                        console.log(jsonObj);
+
+                        if(jsonObj.state == "Y")
+                        {
+                            $(selecter_subject).empty();
+                            $(selecter_subject).append(inputData);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // 요청이 실패했을 때 실행할 코드
+                        console.error(error);
+                    }
+                });
+            }
+        });
+
+    });
+    //---</제목수정>----
 
     //---녹음일자---
-    selecter = $(".contents .chat_window .top_menu .ymdhis");
-    $(selecter).empty();
-    $(selecter).append("녹음일자 : " + jsonObj.from_date);
+    var selecter_ymdhis = $(".contents .chat_window .top_menu .ymdhis");
+    $(selecter_ymdhis).empty();
+    $(selecter_ymdhis).append("녹음일자 : " + jsonObj.from_date);
 
 
     //오디오파일명
@@ -123,8 +173,8 @@ async function ViewMode_Chart_View(main_idx)
 
 
     //레코드 모드와 보기 모드에 따라 waveform, bottom_wrapper설정을 미세조정
-    $('#waveform').css({"top":"-1px", "position": "relative", "height":"50px", "background-color":"#f2f8ff"});
-    $('.bottom_wrapper').css({"clear":"both", "position": "absolute", "display":"block", "height":"100px", "background-color":"#ffffff"});
+    $('#waveform').css({"top":"-1px", "position": "relative", "height":"80px", "background-color":"#f2f8ff"});
+    $('.bottom_wrapper').css({"clear":"both", "position": "absolute", "display":"block", "height":"140px", "background-color":"#ffffff"});
 
 
     //회의내용 불러오기
@@ -164,7 +214,39 @@ async function ViewMode_Chart_View(main_idx)
     $(".pop_speaker_name").hide();
 
     //파일명을 넘기고 차트를 생성
+    //var chart_mode = "SPILT";  //SPILT , MERGE
     create_wavesurfer(global_wave_file_name);
+
+    //봉나례 _ 검색창보이기
+    $('#searchWord').css("display", "");
+
+    //메모 및 북마크의 배경색을 바꾼다
+    apply_wavesurfer_marker_color();
+}
+
+function apply_wavesurfer_marker_color()
+{
+    //페이지로딩후 1.5초뒤...메모 및 북마크의 팝업메세지에서 아래 조건들로 구분하여 배경색을 바꾼다.
+    setTimeout(function (){
+        // 'wavesurfer-marker' 클래스를 가진 모든 'marker' 요소 내에서 'polygon' 요소를 찾습니다.
+        $('.wavesurfer-marker').each(function(){
+            if($(this).find('polygon[transform]').length > 0) {
+                // 'transform' 속성이 있는 경우
+                //$(this).css('border', '2px solid blue');
+                $(this).find('span').css({
+                    'color': '#ffffff',
+                    'background-color': '#45e51e'
+                });
+            } else {
+                // 'transform' 속성이 없는 경우
+                //$(this).css('border', '2px solid red');
+                $(this).find('span').css({
+                    'color': '#ffffff',
+                    'background-color': '#cd27ff'
+                });
+            }
+        });
+     }, 1500);
 }
 
 
@@ -255,24 +337,57 @@ async function get_main_data(get_url)
 }
 
 
+//검색 함수 봉나례
+function searchWord(){
+	let mainId = $(".subject .title").attr('id');
+    let $searchWord = $("#searchWord");
+    let word = $searchWord.find("input").val(); // 입력된 검색어 가져오기
+    let get_url = "/detail/searchWord?mainId=" + mainId + "&detContent=" + encodeURIComponent(word) +"";
 
+    $.ajax({
+        url: get_url,
+        type: "GET",
+        dataType: "json",
+        success: function (json)
+        {
+            console.log(json);
+            // ul 요소 선택
+            let $ul = $searchWord.find("ul");
+            $ul.empty(); // 기존 결과 제거
+            $ul.css("display", "").css("cursor", "pointer");
 
+            // 검색 결과를 순회하며 li 요소를 생성하여 ul에 추가
+            json.forEach (function (el, index) {
+                let $li = $("<li>").attr("id", el.detId); // li 요소 생성
+                let content = textEllipsis(el.detContent, 13);
+                let $strong = $("<strong>").text(content); // 검색 결과 텍스트
+                let startTime = SecondToHis(el.detStart);
+                let endTime = SecondToHis(el.detEnd);
+                let $start = $("<span data-time='"+el.detStart+"' >").text(startTime).css("font-size", "small").css("margin", "10px");
+                let $end = $("<span data-time='"+el.detEnd+"' >").text(endTime).css("font-size", "small").css("margin-left", "10px");
 
+                $li.append($strong); // li에 strong 요소 추가
+                $li.append($start);
+                $li.append("|");
+                $li.append($end);
+                $ul.append($li); // ul에 li 추가
+            });
+        },
+        error: function (request, status, error)
+        {
+            console.log(error);
+            alert('죄송합니다. 서버 연결에 실패했습니다_searchWord');
+        }
+    });
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function textEllipsis(str, number){
+    let length = number; // 표시할 글자수 기준
+    if (str.length > length) {
+        str = str.substr(0, length) + '...';
+    }
+    return str;
+}
 
 
 

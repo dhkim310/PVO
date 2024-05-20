@@ -1339,6 +1339,8 @@ var MultiCanvas = /*#__PURE__*/function (_Drawer) {
 
 
           var h = Math.round(peak / absmax * halfH); // in case of silences, allow the user to specify that we
+          //240507. 최소값을 지정 (오리지날 소스:) var h = Math.round(peak / absmax * halfH)
+          var h = Math.round(peak / absmax * halfH) || 0.05; // in case of silences, allow the user to specify that we
           // always draw *something* (normally a 1px high bar)
 
           if (h == 0 && _this4.params.barMinHeight) {

@@ -137,8 +137,14 @@ function MessageClass(arg)
             $message.find('.name').html(_this.name);
             $message.find('.name').attr("onclick", "change_profile_form(\""+_this.main_idx+"\",\""+_this.name+"\","+_this.index+","+_this.speaker+")");  //name 찾아서 onclcik함수및 값을 추가
             $message.find('.name').attr('id', 'id_name_'+_this.index);
+
+            var tmp_where = "START";
             $message.find('.st_time').html(SecondToHis(_this.st_time));
+            $message.find('.st_time').attr("onclick", "change_time(\""+_this.main_idx+"\","+_this.index+",\""+ tmp_where +"\","+_this.st_time+")");
+
+            tmp_where = "END";
             $message.find('.ed_time').html(SecondToHis(_this.ed_time));
+            $message.find('.ed_time').attr("onclick", "change_time(\""+_this.main_idx+"\","+_this.index+",\""+ tmp_where +"\","+_this.ed_time+")");
 
             if(_this.memo_yn == "Y")
             {   $message.find('.memo_yn').html("메모");
